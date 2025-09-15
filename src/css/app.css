@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton+SC&family=Comfortaa:wght@300..700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --clr-text-white: #e9e8e8;
+    --clr-gray: #f0f0f0;
+    --clr-text-black: #111111;
+    --clr-primary: #5e17eb;
+    --clr-secondary: #0dbd79;
+    --clr-gradiant-primary: linear-gradient(90deg, #004aad, #cb6ce6);
+    --clr-body-dark: #111111;
+    --clr-body-light: #e9e8e8;
+    --clr-button-primary: #5e17eb;
+    --clr-button-secondary: #0dbd79;
+    --clr-button-gray: #f0f0f0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--clr-body-dark);
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.5rem;
+    width: 100wh;
+    height: 100vh;
+    color: var(--clr-text-white);
+}
+
+h1 {
+    font-size: 8rem;
+    font-family: "Anton SC", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: "Anton SC", sans-serif;
+    font-weight: 400;
+    font-style: normal; 
+}
+
+h2 {
+    font-size: 6rem;
+}
+
+h3 {
+    font-size: 4.5rem;
+}
+
+h4 {
+    font-size: 3rem;
+}
+
+h5 {
+    font-size: 2rem;
+}
+
+h6 {
+    font-size: 1.5rem;
+}
+
+.container {
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+    background-color: var(--clr-body-dark);
+
+    @media (width > 576px) {
+        max-width: 540px;
+    }
+
+    @media (width > 768px) {
+        max-width: 720px;
+    }
+
+    @media (width > 992px) {
+        max-width: 960px;
+    }
+
+    @media (width > 1200px) {
+        max-width: 1140px;
+    }
+
+    @media (width > 1400px) {
+        max-width: 1320px;
+    }
+
+    @media (width > 1600px) {
+        max-width: 1440px;
+    }
+}
+
+.button {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.5rem 1rem; 
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.15);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 16px rgba(255, 255, 255, 0.25);
+        transition: 0.2s;
+    }
+}
+
+.button-primary {
+    background: var(--clr-button-primary);
+    color: var(--clr-text-white);
+    border: 1px solid transparent;
+}
+
+.button-secondary {
+    background: var(--clr-button-secondary);
+    border: 1px solid transparent;
+}
+
+
+.button-gray {
+    background-color: var(--clr-button-gray);
+    border: 1px solid transparent;
+}
+
