@@ -4,18 +4,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--clr-body-light);
+  background: var(--clr-body-dark);
   min-height: 100vh;
 }
 
 .confirm-card {
-  background: var(--clr-text-white);
+  background: var(--clr-gray);
   padding: 2rem;
   border-radius: 1.5rem;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   max-width: 400px;
   width: 100%;
-  text-align: center;
+  text-align: center;   
 }
 
 .confirm-icon {
@@ -37,8 +37,8 @@
 }
 
 .btn-primary {
-  background: var(--clr-button-primary);
-  color: var(--clr-text-white);
+  background: var(--clr-button-secondary);
+  color: var(--clr-text-black);
   border: none;
   padding: 0.8rem 1.5rem;
   border-radius: 0.5rem;
