@@ -1,3 +1,4 @@
+import Confirm from './components/Confirm'
 import './css/app.css'
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
       <main>
         <div className='container'>
+          <Confirm />
         </div>
       </main>
     </>
