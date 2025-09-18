@@ -8,8 +8,6 @@ function SignUpPage() {
         <div className='container'>
 
             <div className="auth-frontpage">
-                <h1 className='reg-title'>Core Gym Club</h1>
-                <h6 className='reg-subtitle'>Ditt nästa steg mot styrka och hälsa</h6>
                 < SignUpForm />
             </div>
 

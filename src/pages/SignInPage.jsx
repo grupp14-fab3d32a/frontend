@@ -7,10 +7,7 @@ function SignInPage() {
         <div className='container'>
 
             <div className="auth-frontpage">
-                <h1 className='auth-title'>Core Gym Club</h1>
-                <h6 className='auth-subtitle'>Ditt nästa steg mot styrka och hälsa</h6>
                 < SignInForm />
-
             </div>
 
         </div>

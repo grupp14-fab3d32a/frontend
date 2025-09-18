@@ -78,6 +78,16 @@ h6 {
     font-size: 1.5rem;
 }
 
+/* Autofill fix */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px #2a2f32 inset !important;
+    -webkit-text-fill-color: #e0e0e0 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 .container {
     width: 100%;
     padding-top: 1rem;
@@ -208,7 +218,6 @@ h6 {
     a {
         margin-top: 1.5rem;
         font-size: .8rem;
-
     }
 }
 
