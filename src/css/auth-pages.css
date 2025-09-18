@@ -1,0 +1,72 @@
+/* Autofill fix */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px #2a2a3d inset !important;
+    -webkit-text-fill-color: #e0e0e0 !important;
+}
+
+.auth-frontpage {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 50px auto;
+    margin-top: 6rem;
+    padding: 40px;
+    background-color: #1e1e2f;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+
+    input {
+        width: 100%;
+        padding: 12px 15px;
+        margin-bottom: 15px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        font-size: 1rem;
+        background-color: #2a2a3d;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    }
+
+    input::placeholder {
+        color: #888;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #a78bfa;
+        box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3);
+    }
+
+    button {
+        margin-top: 1.5rem;
+    }
+
+    a {
+        margin-top: 1.5rem;
+        font-size: .8rem;
+
+    }
+}
+
+.form-title {
+    margin-bottom: 1rem;
+}
+
+.forgot-container {
+    margin-left: auto;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
