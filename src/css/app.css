@@ -48,10 +48,14 @@ h1 {
     font-style: italic;
 }
 
-h2, h3, h4, h5, h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "Anton SC", sans-serif;
     font-weight: 400;
-    font-style: normal; 
+    font-style: normal;
 }
 
 h2 {
@@ -112,11 +116,12 @@ h6 {
     font-style: normal;
     font-weight: 500;
     font-size: 1rem;
-    padding: 0.5rem 1rem; 
+    padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     box-shadow: 0 2px 6px rgba(255, 255, 255, 0.15);
     transition: box-shadow 0.25s ease, transform 0.25s ease;
     cursor: pointer;
+
     &:hover {
         transform: scale(1.05);
         box-shadow: 0 6px 16px rgba(255, 255, 255, 0.25);
@@ -142,19 +147,71 @@ h6 {
 }
 
 .app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* fyller hela höjden */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* fyller hela höjden */
 }
 
 .app-main {
-  flex: 1; /* tar upp allt utrymme mellan Navbar och Footer */
-  overflow: hidden; /* tar bort oönskad scroll här */
+    flex: 1;
+    /* tar upp allt utrymme mellan Navbar och Footer */
+    overflow: hidden;
+    /* tar bort oönskad scroll här */
 }
+
 .clr-text-white {
     color: var(--clr-text-white);
 }
 
-.clr-title {
-    
+.clr-title {}
+
+/* forms */
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 50px auto;
+    margin-top: 6rem;
+    padding: 40px;
+    background-color: #3c4245;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+
+    input {
+        width: 100%;
+        padding: 12px 15px;
+        margin-bottom: 15px;
+        border: 1px solid #3c4245;
+        border-radius: 8px;
+        font-size: 1rem;
+        background-color: #2a2f32;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input::placeholder {
+        color: #e9e8e8;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #3c4245;
+        box-shadow: 0 0 0 2px rgba(216, 209, 238, 0.3);
+    }
+
+    button {
+        margin-top: 1.5rem;
+    }
+
+    a {
+        margin-top: 1.5rem;
+        font-size: .8rem;
+
+    }
+}
+
+.form-title {
+    margin-bottom: 1rem;
 }
