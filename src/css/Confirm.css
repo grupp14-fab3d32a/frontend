@@ -1,0 +1,57 @@
+@import url(app.css);
+
+.confirm-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  background: var(--clr-body-dark);
+  height: 100%;
+}
+
+
+.confirm-card {
+  background: #3c4245;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;     
+}
+
+.confirm-icon {
+  font-size: 3.5rem;
+  color: var(--clr-secondary);
+  margin-bottom: 1rem;
+}
+
+.confirm-card h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: var(--clr-text-white);
+}
+
+.confirm-card p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--clr-text-white);
+}
+
+.btn-primary {
+  background: var(--clr-button-secondary);
+  color: var(--clr-text-black);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s ease;
+
+    &:hover {
+        background: #b3c5bd;
+        transition: 0.1s ease;
+    }
+}
+
