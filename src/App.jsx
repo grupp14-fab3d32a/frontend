@@ -2,8 +2,8 @@ import Confirm from './components/Confirm'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import './css/app.css'
-import SignUpPage from './pages/SignUpPage';
-import SignInPage from './pages/SignInPage';
+import SignUpForm from './components/SignUpForm'
+import SignInForm from './components/SignInForm'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CreateFormPage from './pages/CreateFormPage';
 import DeleteFormPage from './pages/DeleteFormPage';
