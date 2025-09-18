@@ -5,8 +5,8 @@ import './css/app.css'
 import SignUpPage from './pages/SignUpPage';
 import SignInPage from './pages/SignInPage';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Createform from './components/Createform'
-
+import CreateFormPage from './pages/CreateFormPage';
+import DeleteFormPage from './pages/DeleteFormPage';
 
 function App() {
   return (
@@ -15,10 +15,11 @@ function App() {
         <Navbar />
         <main className="app-main">
           <Routes>
-            <Route path="/" element={<Createform/>} />
             <Route path="/" element={<Confirm />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/signin" element={<SignInPage />} />
+            <Route path="/createform" element={<CreateFormPage/>} />
+            <Route path="/deleteform" element={<DeleteFormPage/>} />
           </Routes>
         </main>
         <Footer />

@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import "../css/Confirm.css";  
-  import "../css/Createform.css";
+  import "../css/Deleteform.css";
 
 const CreateClass = () => {
   const [formData, setFormData] = useState({title:'', description:'' });
@@ -21,8 +21,7 @@ const CreateClass = () => {
         
         <form className="form">
 
-        <h6 className='form-title'>Skapa nytt pass</h6>
-        <p>Fyll i informationen nedan för att skapa ett nytt pass:</p>
+        <h6 className='form-title'>Ta bort pass</h6>
  
         <button className="close-button" onClick={handleClose} type="button"> × </button>
 
@@ -48,7 +47,7 @@ const CreateClass = () => {
           </div>
           */}
 
-          <button type="submit" className='button button-secondary'>Skapa pass</button>
+          <button type="submit" className='button button-delete'>Ta bort pass</button>
           
         </form>
       

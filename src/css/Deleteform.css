@@ -1,0 +1,83 @@
+@import url(app.css);
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid;
+  font-size: 1rem;
+  text-align: center; 
+}
+
+textarea {
+  min-height: 80px;
+  resize: none;
+  border: 1px solid #333;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #2a2f32;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+textarea::placeholder {
+   color: #e9e8e8;
+ font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+input::placeholder {
+   color: #e9e8e8;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+input {
+        width: 100%;
+        padding: 12px 15px;
+        margin-bottom: 15px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        font-size: 1rem;
+        background-color: #2a2f32;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    }
+
+ .close-button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  line-height: 1;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.close-button:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
