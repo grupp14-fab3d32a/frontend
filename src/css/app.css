@@ -1,19 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton+SC&family=Comfortaa:wght@300..700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+
+/*
+  Förslag på färger
+   #61b390; 
+   #3c4245;
+*/
+
 :root {
     --clr-text-white: #e9e8e8;
     --clr-gray: #f0f0f0;
     --clr-text-black: #111111;
-    --clr-primary: #5e17eb;
-    --clr-secondary: #0dbd79;
+    --clr-primary: #3c4245;
+    --clr-secondary: #61b390;
     --clr-gradiant-primary: linear-gradient(90deg, #004aad, #cb6ce6);
     --clr-body-dark: #111111;
     --clr-body-light: #e9e8e8;
-    --clr-button-primary: #5e17eb;
-    --clr-button-secondary: #0dbd79;
+    --clr-button-primary: #3c4245;
+    --clr-button-secondary: #61b390;
     --clr-button-gray: #f0f0f0;
 }
+
 
 * {
     margin: 0;
@@ -27,9 +35,10 @@ body {
     font-weight: 400;
     font-style: normal;
     font-size: 1.5rem;
-    width: 100wh;
+    width: 100vw;
     height: 100vh;
     color: var(--clr-text-white);
+    overflow-x: hidden;
 }
 
 h1 {
@@ -132,3 +141,13 @@ h6 {
     border: 1px solid transparent;
 }
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* fyller hela höjden */
+}
+
+.app-main {
+  flex: 1; /* tar upp allt utrymme mellan Navbar och Footer */
+  overflow: hidden; /* tar bort oönskad scroll här */
+}
