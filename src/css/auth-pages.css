@@ -3,7 +3,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0px 1000px #2a2a3d inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px #2a2f32 inset !important;
     -webkit-text-fill-color: #e0e0e0 !important;
 }
 
@@ -32,10 +32,10 @@ input:-webkit-autofill:active {
         width: 100%;
         padding: 12px 15px;
         margin-bottom: 15px;
-        border: 1px solid #333;
+        border: 1px solid #3c4245;
         border-radius: 8px;
         font-size: 1rem;
-        background-color: #94a3aa;
+        background-color: #2a2f32;
         transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
     }
@@ -46,8 +46,8 @@ input:-webkit-autofill:active {
 
     input:focus {
         outline: none;
-        border-color: #94a3aa;
-        box-shadow: 0 0 0 3px rgba(216, 209, 238, 0.3);
+        border-color: #3c4245;
+        box-shadow: 0 0 0 2px rgba(216, 209, 238, 0.3);
     }
 
     button {
