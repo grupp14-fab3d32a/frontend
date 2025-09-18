@@ -22,7 +22,7 @@ input:-webkit-autofill:active {
     margin: 50px auto;
     margin-top: 6rem;
     padding: 40px;
-    background-color: #1e1e2f;
+    background-color: #3c4245;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
     text-align: center;
@@ -35,19 +35,19 @@ input:-webkit-autofill:active {
         border: 1px solid #333;
         border-radius: 8px;
         font-size: 1rem;
-        background-color: #2a2a3d;
+        background-color: #94a3aa;
         transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
     }
 
     input::placeholder {
-        color: #888;
+        color: #e9e8e8;
     }
 
     input:focus {
         outline: none;
-        border-color: #a78bfa;
-        box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3);
+        border-color: #94a3aa;
+        box-shadow: 0 0 0 3px rgba(216, 209, 238, 0.3);
     }
 
     button {
