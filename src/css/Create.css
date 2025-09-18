@@ -1,26 +1,5 @@
 @import url(app.css);
 
-.create-wrapper {
- display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 100px;
-  margin-bottom: 100px;
-  background: var(--clr-body-dark);
-  height: 100%;
-}
-
-.create-card {
-  background: #3c4245;
-  padding: 2rem;
-  border-radius: 1.5rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  max-width: 400px;
-  width: 100%;
-  text-align: center;  
-}
-
-
 .form-group {
   display: flex;
   flex-direction: column;
@@ -44,7 +23,7 @@ textarea {
   border: 1px solid #333;
   border-radius: 8px;
   font-size: 1rem;
-  background-color: #94a3aa;
+  background-color: #2a2f32;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -68,9 +47,37 @@ input {
         border: 1px solid #333;
         border-radius: 8px;
         font-size: 1rem;
-        background-color: #94a3aa;
+        background-color: #2a2f32;
         transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
     }
 
- 
+ .close-button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  line-height: 1;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.close-button:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
