@@ -151,3 +151,10 @@ h6 {
   flex: 1; /* tar upp allt utrymme mellan Navbar och Footer */
   overflow: hidden; /* tar bort oönskad scroll här */
 }
+.clr-text-white {
+    color: var(--clr-text-white);
+}
+
+.clr-title {
+    
+}
