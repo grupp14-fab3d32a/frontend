@@ -8,16 +8,27 @@ const CreateClass = () => {
   const handleChange = (e) => {
     const {id, value } = e.target
     setFormData({...formData, [id]: value})
+  }
 
+   const handleClose = () => {
+    if (onClose) {
+      onClose();
+    }
   }
   
   return (
-    <div className="create-wrapper">
-      <div className="create-card">
+    
+      
+        
+       
+        
+        <form className="form">
+
         <h6 className='form-title'>Skapa nytt pass</h6>
         <p>Fyll i informationen nedan för att skapa ett nytt pass:</p>
+ 
+        <button className="close-button" onClick={handleClose} type="button"> × </button>
 
-        <form className="create-form">
           <div className="form-group">
             <input type="text" id="title" value={formData.title} onChange={handleChange} placeholder="Titel" />
           </div>
@@ -41,9 +52,10 @@ const CreateClass = () => {
           */}
 
           <button type="submit" className='button button-secondary'>Skapa pass</button>
+          
         </form>
-      </div>
-    </div>
+      
+    
   );
 };
 
