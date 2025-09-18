@@ -1,5 +1,4 @@
 import React from 'react'
-
 function SignInForm() {
     return (
         <div className="container">
@@ -13,7 +12,7 @@ function SignInForm() {
                         <a href="" className='clr-text-white'>Glömt lösenord?</a>
                     </div>
                     <button type="submit" className='button button-secondary'>Logga in</button>
-                    <a href="/signin" className='clr-text-white'>Ny användare? Registrera dig här</a>
+                    <a href="/signup" className='clr-text-white'>Ny användare? Registrera dig här</a>
                 </form>
             </div>
         </div>

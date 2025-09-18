@@ -180,7 +180,7 @@ input:-webkit-autofill:active {
 .form {
     display: flex;
     flex-direction: column;
-     position: relative;
+    position: relative;
     max-width: 400px;
     margin: 50px auto;
     margin-top: 6rem;
@@ -220,8 +220,14 @@ input:-webkit-autofill:active {
         margin-top: 1.5rem;
         font-size: .8rem;
     }
-}
 
-.form-title {
-    margin-bottom: 1rem;
+    .forgot-container {
+        margin-left: auto;
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    .form-title {
+        margin-bottom: 1rem;
+    }
 }
