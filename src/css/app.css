@@ -12,13 +12,13 @@
     --clr-text-white: #e9e8e8;
     --clr-gray: #f0f0f0;
     --clr-text-black: #111111;
-    --clr-primary: #5e17eb;
-    --clr-secondary: #0dbd79;
+    --clr-primary: #3c4245;
+    --clr-secondary: #61b390;
     --clr-gradiant-primary: linear-gradient(90deg, #004aad, #cb6ce6);
     --clr-body-dark: #111111;
     --clr-body-light: #e9e8e8;
-    --clr-button-primary: #5e17eb;
-    --clr-button-secondary: #0dbd79;
+    --clr-button-primary: #3c4245;
+    --clr-button-secondary: #61b390;
     --clr-button-gray: #f0f0f0;
 }
 
