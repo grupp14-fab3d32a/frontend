@@ -4,9 +4,9 @@ import Navbar from './components/Navbar'
 import './css/app.css'
 import SignUpForm from './components/SignUpForm'
 import SignInForm from './components/SignInForm'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import CreateFormPage from './pages/CreateFormPage';
-import DeleteFormPage from './pages/DeleteFormPage';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import CreateForm from './components/CreateForm'
+import DeleteForm from './components/DeleteForm';
 
 function App() {
   return (
@@ -16,10 +16,10 @@ function App() {
         <main className="app-main">
           <Routes>
             <Route path="/" element={<Confirm />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/signin" element={<SignInPage />} />
-            <Route path="/createform" element={<CreateFormPage/>} />
-            <Route path="/deleteform" element={<DeleteFormPage/>} />
+            <Route path="/signup" element={<SignUpForm />} />
+            <Route path="/signin" element={<SignInForm />} />
+            <Route path="/createform" element={<CreateForm/>} />
+            <Route path="/deleteform" element={<DeleteForm/>} />
           </Routes>
         </main>
         <Footer />

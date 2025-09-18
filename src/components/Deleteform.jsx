@@ -18,7 +18,8 @@ const CreateClass = () => {
   
   return (
     
-        
+        <div className="container">
+          <div className='auth-frontpage'>
         <form className="form">
 
         <h6 className='form-title'>Ta bort pass</h6>
@@ -50,7 +51,7 @@ const CreateClass = () => {
           <button type="submit" className='button button-delete'>Ta bort pass</button>
           
         </form>
-      
+      </div></div>
     
   );
 };
