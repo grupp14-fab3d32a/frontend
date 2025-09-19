@@ -13,21 +13,38 @@
   align-items: center;
 }
 
+/* Logo */
 .navbar-logo {
-  font-size: 1.25rem;
-  font-weight: bold;
-  letter-spacing: 1px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #ffffff;
+}
+.navbar-logo-link {
+  text-decoration: none;
 }
 
+.logo-highlight {
+  color: #61b390;
+}
+
+/* Links + Login wrapper */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Links */
 .navbar-links {
   display: flex;
-  gap: 4rem;
+  gap: 2rem;
   list-style: none;
 }
 
 .navbar-links a {
   text-decoration: none;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: #61b390;
   transition: color 0.3s ease;
@@ -35,6 +52,19 @@
 
 .navbar-links a:hover {
   color: #ffffff;
+}
+
+/* Login ikon */
+.login-icon {
+  font-size: 2rem;
+  color: #61b390;
+  transition: color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.login-icon:hover {
+  color: #ffffff;
+  transform: scale(1.1);
 }
 
 /* Hamburger knapp (mobil) */
@@ -55,8 +85,57 @@
   color: #ffffff;
 }
 
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #61b390;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.link-button:hover {
+  color: #ffffff;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  background: #3c4245;
+  border: 1px solid #61b390;
+  border-radius: 6px;
+  list-style: none;
+  padding: 0.5rem 0;
+  min-width: 210px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+.dropdown-menu li {
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-menu li a {
+  color: #e9e8e8;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.dropdown-menu li a:hover {
+  color: #61b390;
+}
+
 @media (max-width: 768px) {
-  .navbar-links {
+  .navbar-links,
+  .navbar-login {
     display: none;
   }
 
