@@ -23,6 +23,7 @@ textarea {
   border: 1px solid #333;
   border-radius: 8px;
   font-size: 1rem;
+  color: #e9e8e8;
   background-color: #2a2f32;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -48,6 +49,7 @@ input {
         border-radius: 8px;
         font-size: 1rem;
         background-color: #2a2f32;
+        color: #e9e8e8;
         transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
     }
