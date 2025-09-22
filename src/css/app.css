@@ -237,6 +237,7 @@ input:-webkit-autofill:active {
         margin-bottom: 1rem;
     }
 
+
     .form-group input.error,
 .form-group textarea.error {
   border: 2px solid #2a2f32;
@@ -258,4 +259,25 @@ input:-webkit-autofill:active {
   display: block;
   font-weight: 500;
 }
+   .form-error-message {
+        color: #f17c7c;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+        text-align: left;
+        font-weight: 400;
+        animation: fadeIn 0.3s ease-in-out;
+        margin-left: 8px;
+    }
+
+    .input-group-auth {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+
+        input {
+            margin-bottom: 1.5px;
+        }
+
+    }
+  
 }
