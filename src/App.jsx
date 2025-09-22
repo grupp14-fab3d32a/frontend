@@ -5,10 +5,11 @@ import './css/app.css'
 import SignUpForm from './components/SignUpForm'
 import SignInForm from './components/SignInForm'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import CreateForm from './components/CreateForm'
-import DeleteForm from './components/DeleteForm';
+import Createform from './components/Createform'
+import Deleteform from './components/Deleteform'
 import Home from './pages/Home'
 import PassList from './pages/PassList'
+
 
 function App() {
   return (
@@ -22,8 +23,9 @@ function App() {
             <Route path="/confirm" element={<Confirm />} />
             <Route path="/signup" element={<SignUpForm />} />
             <Route path="/signin" element={<SignInForm />} />
-            <Route path="/createform" element={<CreateForm/>} />
-            <Route path="/deleteform" element={<DeleteForm/>} />
+            <Route path="/createform" element={<Createform/>} />
+            <Route path="/deleteform" element={<Deleteform/>} />
+            
           </Routes>
         </main>
         <Footer />

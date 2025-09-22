@@ -54,7 +54,7 @@ const CreateClass = ({ onClose }) => {
     setErrors({});
     
     // Here you can proceed with form submission
-    console.log('Form is valid, submitting:', formData);
+    console.log('Form is valid', formData);
 
    /* const res = await fetch('', {
       method:'post', 
