@@ -40,7 +40,7 @@ const CreateClass = ({ onClose }) => {
     return newErrors;
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     const validationErrors = validateForm();
@@ -56,13 +56,32 @@ const CreateClass = ({ onClose }) => {
     // Here you can proceed with form submission
     console.log('Form is valid', formData);
 
-   /* const res = await fetch('', {
-      method:'post', 
-      headers: {
-        'Content-type' : 'application/json',
-      },
-      body: JSON.stringify(formData)
-    })*/
+  try {
+      const res = await fetch("https://localhost:7214/api/workouts/create", {
+        method:'POST', 
+        headers: {
+          'Content-type' : 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+
+      if (res.ok) {
+        alert('Pass har skapats!');
+
+        setFormData({title:'', description:''});
+        if (onClose) {
+          onClose();
+        }
+
+      } else {
+        alert('Något gick fel. Försök igen.');
+      }
+    } catch (error) {
+      alert('Kunde inte ansluta till servern.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  
   }
 
   const handleClose = () => {
