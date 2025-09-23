@@ -42,3 +42,26 @@
 .instructor-workout {
     width: 12rem;
 }
+.update-button{
+    background: var(--clr-secondary);
+    color: var(--clr-text-black);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.create-button {
+    background: var(--clr-secondary);
+    color: var(--clr-text-black);
+    border: none;
+    width: 10rem;
+    margin: 1rem;
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.create-button:hover {
+    background: var(--clr-secondary);
+}

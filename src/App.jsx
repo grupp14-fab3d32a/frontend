@@ -9,6 +9,7 @@ import Createform from './components/Createform'
 import Deleteform from './components/Deleteform'
 import Home from './pages/Home'
 import PassList from './pages/PassList'
+import UpdatePass from './pages/UpdatePass'
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
             <Route path="/signin" element={<SignInForm />} />
             <Route path="/createform" element={<Createform/>} />
             <Route path="/deleteform" element={<Deleteform/>} />
-            
+            <Route path="/update/:id" element={<UpdatePass />} />
           </Routes>
         </main>
         <Footer />
