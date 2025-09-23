@@ -1,0 +1,44 @@
+@import url(app.css);
+
+.List-workout {
+  list-style: none;
+  padding: 0;
+}
+
+.List-item-workout {
+    border: 1px solid var(--clr-button-primary);
+    background-color: var(--clr-button-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    P:nth-last-child(2) {
+        margin-left: auto;
+    }
+    H6 {
+        margin-left: 3rem;
+    }
+}
+
+.Headline-workout {
+    margin: 0 auto;
+    color: var(--clr-secondary);
+}
+
+.Passlist {
+    margin: 0 10rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.location-workout {
+    width: 12rem;
+}
+
+.instructor-workout {
+    width: 12rem;
+}
