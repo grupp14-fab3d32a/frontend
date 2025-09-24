@@ -1,9 +1,17 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import "../css/Confirm.css";  
 import "../css/Createform.css";
 
 const CreateClass = ({ onClose }) => {
-  const [formData, setFormData] = useState({title:'', description:'' });
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    title: '', 
+    description: '', 
+    date: '', 
+    time: '', 
+    trainer: ''
+  });
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -50,13 +58,9 @@ const CreateClass = ({ onClose }) => {
       return;
     }
 
-    // Clear errors if validation passes
     setErrors({});
-    
-    // Here you can proceed with form submission
-    console.log('Form is valid', formData);
 
-  try {
+    try {
       const res = await fetch("https://localhost:7214/api/workouts/create", {
         method:'POST', 
         headers: {
@@ -67,27 +71,21 @@ const CreateClass = ({ onClose }) => {
 
       if (res.ok) {
         alert('Pass har skapats!');
-
-        setFormData({title:'', description:''});
+        setFormData({title: '', description: '', date: '', time: '', trainer: ''});
         if (onClose) {
           onClose();
         }
-
       } else {
         alert('Något gick fel. Försök igen.');
       }
     } catch (error) {
       alert('Kunde inte ansluta till servern.');
-    } finally {
-      setIsSubmitting(false);
     }
-  
   }
 
-  const handleClose = () => {
-    if (onClose) {
-      onClose();
-    }
+  const handleCancel = (e) => {
+    e.preventDefault(); 
+    navigate("/");
   }
   
   return (
@@ -96,9 +94,7 @@ const CreateClass = ({ onClose }) => {
         <form className="form" onSubmit={handleSubmit} noValidate>
 
           <h6 className='form-title'>Skapa nytt pass</h6>
-          <p>Fyll i informationen nedan för att skapa ett nytt pass:</p>
-   
-          <button className="close-button" onClick={handleClose} type="button"> × </button>
+          
 
           <div className="form-group">
             <input 
@@ -124,22 +120,49 @@ const CreateClass = ({ onClose }) => {
             {errors.description && <span className="error-message">{errors.description}</span>}
           </div>
 
-          {/* 
           <div className="form-group">
-            <input type="date" id="date" placeholder="Datum" />
+            <input 
+              type="date" 
+              id="date" 
+              value={formData.date}
+              onChange={handleChange}
+              placeholder="Datum" 
+            />
           </div>
 
           <div className="form-group">
-            <input type="time" id="time" placeholder="Tid" />
+            <input 
+              type="time" 
+              id="time" 
+              value={formData.time}
+              onChange={handleChange}
+              placeholder="Tid" 
+            />
           </div>
 
           <div className="form-group">
-            <input type="text" id="trainer" placeholder="Tränare" />
+            <input 
+              type="text" 
+              id="trainer" 
+              value={formData.trainer}
+              onChange={handleChange}
+              placeholder="Tränare" 
+            />
           </div>
-          */}
 
-          <button type="submit" className='button button-secondary'>Skapa pass</button>
-          
+          <div className="button-group">
+            <button type="submit" className='button button-secondary'>
+              Skapa pass
+            </button>
+            
+            <button 
+              type="button" 
+              className='button button-delete' 
+              onClick={handleCancel}>
+              Avbryt
+            </button>
+          </div>
+
         </form>
       </div>
     </div>
