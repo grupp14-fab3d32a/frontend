@@ -1,5 +1,6 @@
 import React from 'react'
 import "../css/PassList.css"
+import { useNavigate } from 'react-router-dom'
 
 const workouts = [
   { id: 1, title: "Yoga Flow", date: "2025-09-25", time: "18:00", instructor: "Anna", location: "Core Gym Göteborg" },
@@ -17,8 +18,15 @@ const workouts = [
 ];
 
 const PassList = () => {
+
+      const navigate = useNavigate()
+
+
   return (
     <div className='Passlist'>
+      <button className='create-button' onClick={() => navigate('/createform')}>
+        Skapa nytt pass
+      </button>
       <h3 className='Headline-workout'>Kommande träningspass</h3>
       {workouts.length === 0 ? (
         <p className="List-item-workout">Inga träningspass tillgängliga just nu</p>
@@ -30,6 +38,12 @@ const PassList = () => {
               <h6 className='title-workout'>{workout.title}</h6>
               <p className='instructor-workout'>Instruktör: {workout.instructor}</p>
               <p className='location-workout'>{workout.location}</p>
+              <button 
+                className='update-button'
+                onClick={() => navigate(`/update/${workout.id}`)}
+              >
+                Uppdatera
+              </button>
             </li>
           ))}
         </ul>
