@@ -60,8 +60,8 @@ const CreateClass = ({ onClose }) => {
 
     setErrors({});
 
-    try {
-      const res = await fetch("https://localhost:7214/api/workouts/create", {
+    try { //lägg in API url sen
+      const res = await fetch("", {
         method:'POST', 
         headers: {
           'Content-type' : 'application/json',
