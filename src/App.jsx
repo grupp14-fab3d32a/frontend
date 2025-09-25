@@ -10,6 +10,7 @@ import Deleteform from './components/Deleteform'
 import Home from './pages/Home'
 import PassList from './pages/PassList'
 import UpdatePass from './pages/UpdatePass'
+import UpdateProfile from './pages/UpdateProfile'
 
 
 function App() {
@@ -21,12 +22,13 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/PassList" element={<PassList />} />
-            <Route path="/confirm" element={<Confirm />} />
+            <Route path="/confirm/:id" element={<Confirm />} />
             <Route path="/signup" element={<SignUpForm />} />
             <Route path="/signin" element={<SignInForm />} />
             <Route path="/createform" element={<Createform/>} />
             <Route path="/deleteform" element={<Deleteform/>} />
             <Route path="/update/:id" element={<UpdatePass />} />
+            <Route path="/updateProfile" element={<UpdateProfile />} />
           </Routes>
         </main>
         <Footer />
