@@ -1,8 +1,12 @@
 
-import React from "react";
+import React, { useState } from "react";
 import "../css/Confirm.css";    
+import { useLocation } from "react-router-dom";
 
 const Confirm = () => {
+
+  const { state } = useLocation();
+
   return (
      <div className="confirm-wrapper">
       <div className="confirm-card">
@@ -11,7 +15,7 @@ const Confirm = () => {
         <p>Tack för din bokning. Här är dina uppgifter:</p>
 
         <div className="confirm-details">
-          <p><span>Pass:</span> Yoga</p>
+          <p><span>Pass:</span>{state.title}</p>
           <p><span>Datum:</span> 2023-10-01</p>
           <p><span>Tid:</span> 10:00</p>
           <p><span>Plats:</span> Stockholm</p>

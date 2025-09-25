@@ -21,7 +21,6 @@ const PassList = () => {
 
       const navigate = useNavigate()
 
-
   return (
     <div className='Passlist'>
       <button className='create-button' onClick={() => navigate('/createform')}>
@@ -40,9 +39,15 @@ const PassList = () => {
               <p className='location-workout'>{workout.location}</p>
               <button 
                 className='update-button'
-                onClick={() => navigate(`/update/${workout.id}`)}
+                onClick={() => navigate(`/update/${workout}`)}
               >
                 Uppdatera
+              </button>
+              <button 
+                className='button button-secondary'
+                onClick={() => navigate(`/confirm/${workout.id}`, { state: workout })}
+              >
+                Boka
               </button>
             </li>
           ))}
