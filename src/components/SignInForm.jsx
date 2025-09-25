@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
+import { RiSofaFill } from 'react-icons/ri';
 
 function SignInForm() {
-
+    const singInUrl = 'https://localhost:7266/api/user/signin'
     const [formData, setFormData] = useState({
-        username: "",
+        email: "",
         password: ""
     });
     const [errors, setErrors] = useState({});
@@ -16,8 +17,8 @@ function SignInForm() {
     const validate = () => {
         let newErrors = {};
 
-        if (!formData.username) {
-            newErrors.username = "Användarnamn är obligatoriskt.";
+        if (!formData.email) {
+            newErrors.email = "Användarnamn är obligatoriskt.";
         }
         if (!formData.password) {
             newErrors.password = "Lösenord är obligatoriskt.";
@@ -27,17 +28,28 @@ function SignInForm() {
     };
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const validationErrors = validate();
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
-        } else {
-            setErrors({});
-            console.log("Login skickas till backend:", formData);
-            //FETCH till API här sen.
+            return
         }
+
+        const response = await fetch(`${singInUrl}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+        const data = await response.json()
+        console.log(data)
+        localStorage.setItem("user", JSON.stringify(data.user))
+        localStorage.setItem("token", data.token)
+        setErrors({});
+
     };
 
     return (
@@ -48,8 +60,8 @@ function SignInForm() {
 
                     <div className="input-group-auth">
                         <input className='clr-text-white'
-                            type="text"
-                            name="username"
+                            type="email"
+                            name="email"
                             placeholder="Användarnamn"
                             value={formData.username}
                             onChange={handleChange}
