@@ -37,18 +37,25 @@ function SignInForm() {
             return
         }
 
-        const response = await fetch(`${singInUrl}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
-        })
-        const data = await response.json()
-        console.log(data)
-        localStorage.setItem("user", JSON.stringify(data.user))
-        localStorage.setItem("token", data.token)
-        setErrors({});
+        try {
+
+            const response = await fetch(`${singInUrl}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+            const data = await response.json()
+            console.log(data)
+            localStorage.setItem("user", JSON.stringify(data.user))
+            localStorage.setItem("token", data.token)
+            setErrors({});
+            
+        }
+        catch (error) {
+            console.log('Login failed:', error.message)
+        }
 
     };
 
