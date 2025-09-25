@@ -10,6 +10,7 @@ import Deleteform from './components/Deleteform'
 import Home from './pages/Home'
 import PassList from './pages/PassList'
 import UpdatePass from './pages/UpdatePass'
+import UpdateProfile from './pages/UpdateProfile'
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/createform" element={<Createform/>} />
             <Route path="/deleteform" element={<Deleteform/>} />
             <Route path="/update/:id" element={<UpdatePass />} />
+            <Route path="/updateProfile" element={<UpdateProfile />} />
           </Routes>
         </main>
         <Footer />
