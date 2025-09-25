@@ -38,6 +38,7 @@ const PassList = () => {
               <h6 className='title-workout'>{workout.title}</h6>
               <p className='instructor-workout'>Instruktör: {workout.instructor}</p>
               <p className='location-workout'>{workout.location}</p>
+
               <button 
                 className='update-button'
                 onClick={() => navigate(`/update/${workout.id}`)}
