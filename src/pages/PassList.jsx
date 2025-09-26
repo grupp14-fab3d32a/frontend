@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "../css/PassList.css"
 import { useNavigate } from 'react-router-dom'
 
@@ -20,10 +20,32 @@ const workouts = [
 const PassList = () => {
   const navigate = useNavigate()
   const [bookedWorkouts, setBookedWorkouts] = useState([]) // lagrar bokade pass
+
  
+
+
+
+
+useEffect(() => {
+  const fetchBookings = async () => {
+    try {
+      const res = await fetch("https://localhost:7106/api/bookings/member/0e7767ba-13fb-44c6-925a-3c22db351b1e");
+      if (res.ok) {
+        const data = await res.json();
+        // Om API:t returnerar en lista med bokningar { workoutId: "..." }
+        setBookedWorkouts(data.map(b => b.workoutId));
+      }
+    } catch (error) {
+      console.error("Kunde inte hämta bokningar", error);
+    }
+  };
+
+  fetchBookings();
+}, []);
+
   const handleBooking = async (workout) => { 
     const requestData = {
-    memberId: '0e7767ba-13fb-44c6-925a-3c22db651b1e', 
+    memberId: '0e7767ba-13fb-44c6-925a-3c22db351b1e', 
     workoutId: workout.id, 
   };
 //Är passet redan bokat?
@@ -60,18 +82,6 @@ const isBooked = bookedWorkouts.includes(workout.id);
       alert('Kunde inte ansluta till servern');
     }
     }
-       
-    /*if (bookedWorkouts.includes(workout.id)) {
-      // Avboka
-      setBookedWorkouts(bookedWorkouts.filter(id => id !== workout.id))
-      console.log(`Avbokade pass ${workout.id}`)
-    } else {
-      // Boka
-      setBookedWorkouts([...bookedWorkouts, workout.id])
-      console.log(`Bokade pass ${workout.id}`)
-      navigate(`/confirm/${workout.id}`, { state: workout })
-    }*/
-  
 
   return (
     <div className='Passlist'>
