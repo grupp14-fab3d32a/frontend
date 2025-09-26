@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 
 function SignInForm() {
-    const [formData, setFormData] = useState({ email: "", password: "" });
-    const [errors, setErrors] = useState({});
+    const [formData, setFormData] = useState({ email: "", password: "" })
+    const [errors, setErrors] = useState({})
+    const [loginError, setLoginError] = useState("")
     const { decodeAndSetUser } = useAuth()
     const navigate = useNavigate()
 
@@ -42,11 +43,22 @@ function SignInForm() {
                 localStorage.setItem("token", result.token)
                 decodeAndSetUser(result.token)
                 setErrors({});
+                setLoginError("")
                 navigate('/')
             }
         }
         catch (error) {
             console.log('Login failed:', error.message)
+            if (error.message) {
+                try {
+                    const errObj = JSON.parse(error.message)
+                    setLoginError(errObj.message || "Login failed")
+                } catch {
+                    setLoginError(error.message)
+                }
+            } else {
+                setLoginError("Login failed.")
+            }
         }
 
     };
@@ -81,6 +93,7 @@ function SignInForm() {
                         {errors.password && <span className="form-error-message">{errors.password}</span>}
                     </div>
 
+                    {loginError && <p className="form-error-message">{loginError}</p>}
 
                     <div className='forgot-container'>
                         <a href="" className='clr-text-white'>Glömt lösenord?</a>
