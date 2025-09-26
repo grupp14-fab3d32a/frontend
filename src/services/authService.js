@@ -20,7 +20,7 @@ export async function signUp(user) {
   const response = await fetch(`${signUpUrl}`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'applicaton/json'
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(user)
   })
