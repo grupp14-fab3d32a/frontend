@@ -1,8 +1,7 @@
-const signInUrl = 'https://localhost:7266/api/user/signin'
-const signUpUrl = 'https://localhost:7266/api/user/signup'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 export async function signIn(user) {
-  const response = await fetch(`${signInUrl}`, {
+  const response = await fetch(`${API_BASE_URL}/user/signin`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -17,7 +16,7 @@ export async function signIn(user) {
 }
 
 export async function signUp(user) {
-  const response = await fetch(`${signUpUrl}`, {
+  const response = await fetch(`${API_BASE_URL}/user/signup`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
