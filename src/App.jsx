@@ -11,6 +11,7 @@ import Home from './pages/Home'
 import PassList from './pages/PassList'
 import UpdatePass from './pages/UpdatePass'
 import UpdateProfile from './pages/UpdateProfile'
+import HistoryWorkout from './pages/HistoryWorkout'
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <Route path="/deleteform" element={<Deleteform/>} />
             <Route path="/update/:id" element={<UpdatePass />} />
             <Route path="/updateProfile" element={<UpdateProfile />} />
+            <Route path="/workouthistory" element={<HistoryWorkout />} />
           </Routes>
         </main>
         <Footer />
