@@ -1,12 +1,14 @@
 import React from 'react'
 import { useState } from "react";
+import { signUp } from '../services/authService';
 
 function SignUpForm() {
     const [formData, setFormData] = useState({
-        userName: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
-        confirmPassword: ""
+        // confirmPassword: ""
     })
 
     const [errors, setErrors] = useState({});
@@ -20,13 +22,22 @@ function SignUpForm() {
             const newErrors = { ...prevErrors };
 
             switch (name) {
-                case "userName":
+                case "firstName":
                     if (!value) {
-                        newErrors.userName = "Användarnamn är obligatoriskt.";
+                        newErrors.firstName = "Namn är obligatoriskt.";
                     } else if (value.length < 4) {
-                        newErrors.userName = "Användarnamn måste vara minst 4 tecken.";
+                        newErrors.firstName = "Namn måste vara minst 4 tecken.";
                     } else {
-                        delete newErrors.userName;
+                        delete newErrors.firstName;
+                    }
+                    break;
+                case "lastName":
+                    if (!value) {
+                        newErrors.lastName = "Efternamn är obligatoriskt.";
+                    } else if (value.length < 4) {
+                        newErrors.lastName = "Efternamn måste vara minst 4 tecken.";
+                    } else {
+                        delete newErrors.lastName;
                     }
                     break;
 
@@ -74,10 +85,15 @@ function SignUpForm() {
         let newErrors = {}
 
         //Validering för username.
-        if (!formData.userName) {
-            newErrors.userName = "Användarnamn är obligatoriskt."
-        } else if (formData.userName.length < 4) {
-            newErrors.userName = "Användarnamnet måste vara minst 4 tecken.";
+        if (!formData.firstName) {
+            newErrors.firstName = "Namn är obligatoriskt."
+        } else if (formData.firstName.length < 4) {
+            newErrors.firstName = "Namn måste vara minst 4 tecken.";
+        }
+        if (!formData.lastName) {
+            newErrors.lastName = "Efternamn är obligatoriskt."
+        } else if (formData.lastName.length < 4) {
+            newErrors.lastName = "Efternamn måste vara minst 4 tecken.";
         }
 
         //Validering för Email.
@@ -102,15 +118,23 @@ function SignUpForm() {
         return newErrors;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         const validationErrors = validate()
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors)
-        } else {
-            setErrors({})
-            console.log("Formulär skickat", formData)
-            //Gör FETCH till API här.
+            return
+        }
+
+        try {
+            const result = await signUp(formData)
+            if (result.isSuccess) {
+                setErrors({});
+                navigate('/signin')
+            }
+        }
+        catch (error) {
+            console.log('Registration failed:', error.message)
         }
     };
 
@@ -122,13 +146,23 @@ function SignUpForm() {
 
                     <div className="input-group-auth">
                         <input className='clr-text-white'
-                            type="text" name="userName"
-                            placeholder="Användarnamn"
+                            type="text" name="firstName"
+                            placeholder="Namn"
                             value={formData.userName}
                             onChange={handleChange}
                             required
                         />
-                        {errors.userName && <span className="form-error-message">{errors.userName}</span>}
+                        {errors.firstName && <span className="form-error-message">{errors.firstName}</span>}
+                    </div>
+                    <div className="input-group-auth">
+                        <input className='clr-text-white'
+                            type="text" name="lastName"
+                            placeholder="Efternamn"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            required
+                        />
+                        {errors.lastName && <span className="form-error-message">{errors.lastName}</span>}
                     </div>
 
                     <div className="input-group-auth">
