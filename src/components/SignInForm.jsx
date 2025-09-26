@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import { RiSofaFill } from 'react-icons/ri';
+import { useState } from 'react'
+import { signIn } from '../services/authService'
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 function SignInForm() {
-    const singInUrl = 'https://localhost:7266/api/user/signin'
-    const [formData, setFormData] = useState({
-        email: "",
-        password: ""
-    });
+    const [formData, setFormData] = useState({ email: "", password: "" });
     const [errors, setErrors] = useState({});
+    const { decodeAndSetUser } = useAuth()
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,7 +23,6 @@ function SignInForm() {
         if (!formData.password) {
             newErrors.password = "Lösenord är obligatoriskt.";
         }
-
         return newErrors;
     };
 
@@ -38,20 +37,13 @@ function SignInForm() {
         }
 
         try {
-
-            const response = await fetch(`${singInUrl}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
-            })
-            const data = await response.json()
-            console.log(data)
-            localStorage.setItem("user", JSON.stringify(data.user))
-            localStorage.setItem("token", data.token)
-            setErrors({});
-            
+            const result = await signIn(formData)
+            if (result.isSuccess) {
+                localStorage.setItem("token", result.token)
+                decodeAndSetUser(result.token)
+                setErrors({});
+                navigate('/')
+            }
         }
         catch (error) {
             console.log('Login failed:', error.message)
