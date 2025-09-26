@@ -71,7 +71,7 @@ const CreateClass = ({ onClose }) => {
 
       if (res.ok) {
         alert('Pass har skapats!');
-        setFormData({title: '', description: '', date: '', time: '', trainer: ''});
+        setFormData({title: '', description: '', date: '', time: '', trainer: '', totalSpots: ''});
         if (onClose) {
           onClose();
         }
@@ -149,6 +149,18 @@ const CreateClass = ({ onClose }) => {
               placeholder="Tränare" 
             />
           </div>
+
+          
+        <div className="form-group">
+          <input 
+            type="number" 
+            id="totalSpots" 
+            value={formData.totalSpots} 
+            onChange={handleChange} 
+            placeholder="Totalt antal platser" 
+          />
+        </div>
+
 
           <div className="button-group">
             <button type="submit" className='button button-secondary'>

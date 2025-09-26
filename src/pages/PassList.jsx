@@ -23,29 +23,45 @@ const PassList = () => {
  
   const handleBooking = async (workout) => { 
     const requestData = {
-    memberId: '0e7767ba-13fb-44c6-925a-3c22db351b1e', 
+    memberId: '0e7767ba-13fb-44c6-925a-3c22db651b1e', 
     workoutId: workout.id, 
   };
+//Är passet redan bokat?
+const isBooked = bookedWorkouts.includes(workout.id);
 
-   try { //lägg in API url sen
-      const res = await fetch("https://localhost:7106/api/bookings", {
+   try { 
+    let res;
+    if (isBooked) {
+       res = await fetch(`https://localhost:7106/api/bookings/${workout.id}`, {
+        method:'DELETE', 
+    
+      });
+    } else {
+       res = await fetch("https://localhost:7106/api/bookings", {
         method:'POST', 
-        headers: {
-          'Content-type' : 'application/json',
-        },
+        headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(requestData)
-      })
+    });
+  }
 
       if (res.ok) {
-        navigate(`/confirm/${workout.id}`, { state: workout })
-      } else {
-        alert('Något gick fel. Försök igen.');
+        if (isBooked) {
+          setBookedWorkouts(bookedWorkouts.filter(id => id !== workout.id));
+          console.log(`Avbokade pass ${workout.id}`);
+        } else {
+          setBookedWorkouts([...bookedWorkouts, workout.id]);
+          console.log(`Bokade pass ${workout.id}`);
+          navigate(`/confirm/${workout.id}`, { state: workout });
+        }
+      }else {
+        alert('Något gick fel');
       }
     } catch (error) {
-      alert('Kunde inte ansluta till servern.');
+      alert('Kunde inte ansluta till servern');
     }
-  }
-   /* if (bookedWorkouts.includes(workout.id)) {
+    }
+       
+    /*if (bookedWorkouts.includes(workout.id)) {
       // Avboka
       setBookedWorkouts(bookedWorkouts.filter(id => id !== workout.id))
       console.log(`Avbokade pass ${workout.id}`)
@@ -84,7 +100,7 @@ const PassList = () => {
                 className='button button-secondary'
                 onClick={() => handleBooking(workout)}
               >
-               {bookedWorkouts.includes(workout.id) ? "Avboka" : "Boka"}
+              {bookedWorkouts.includes(workout.id) ? "Avboka" : "Boka"}
               </button>
             </li>
           ))}
