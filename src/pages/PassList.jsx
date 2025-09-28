@@ -100,6 +100,10 @@ const isBooked = bookedWorkouts.includes(workout.id);
               <p className='instructor-workout'>Instruktör: {workout.instructor}</p>
               <p className='location-workout'>{workout.location}</p>
 
+
+
+              
+
               <button 
                 className='update-button'
                 onClick={() => navigate(`/update/${workout.id}`)}
