@@ -6,7 +6,7 @@ const workouts = [
   { id: "3d96f3e1-86eb-4139-bd1c-f6b96ff8cbb2", title: "Yoga Flow", date: "2025-09-25", time: "18:00", instructor: "Anna", location: "Core Gym Göteborg" }, //måste vara unika id
   { id: "3e8de47e-edf0-4caa-bb96-e83474ef3959", title: "HIIT Cardio", date: "2025-09-26", time: "17:30", instructor: "Johan", location: "Core Gym Stockholm" },
   { id: "cfaadeb1-1b60-4e6a-959d-7d79f05454a4", title: "Strength Training", date: "2025-09-27", time: "19:00", instructor: "Sara", location: "Core Gym Malmö" },
-  { id: "e71ad296-ab88-4653-bf48-d3cd82636bc7", title: "Gym Intro", date: "2025-09-28", time: "16:00", instructor: "Nils", location: "Core Gym Uppsala" },
+  { id: "e71ad296-ab88-4653-bf48-d3cd82636bc7", title: "Gym Intro", date: "2025-09-28", time: "16:00", instructor: "Nils", location: "Core Gym Uppsala", totalSpots: "20", bookedSpots: "7" },
   /*{ id: 1, title: "Yoga Flow", date: "2025-09-25", time: "18:00", instructor: "Anna", location: "Core Gym Göteborg" },
   { id: 2, title: "HIIT Cardio", date: "2025-09-26", time: "17:30", instructor: "Johan", location: "Core Gym Stockholm" },
   { id: 3, title: "Strength Training", date: "2025-09-27", time: "19:00", instructor: "Sara", location: "Core Gym Malmö" },
@@ -100,10 +100,9 @@ const isBooked = bookedWorkouts.includes(workout.id);
               <p className='instructor-workout'>Instruktör: {workout.instructor}</p>
               <p className='location-workout'>{workout.location}</p>
 
+             <p className='spots-left'><span className='number'>{workout.totalSpots - workout.bookedSpots}</span> platser kvar</p>
 
-
-              
-
+            
               <button 
                 className='update-button'
                 onClick={() => navigate(`/update/${workout.id}`)}
