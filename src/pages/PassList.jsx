@@ -2,28 +2,45 @@ import React, { useState, useEffect } from 'react'
 import "../css/PassList.css"
 import { useNavigate } from 'react-router-dom'
 
-const workouts = [
-  { id: "3d96f3e1-86eb-4139-bd1c-f6b96ff8cbb2", title: "Yoga Flow", date: "2025-09-25", time: "18:00", instructor: "Anna", location: "Core Gym Göteborg" }, //måste vara unika id
-  { id: "3e8de47e-edf0-4caa-bb96-e83474ef3959", title: "HIIT Cardio", date: "2025-09-26", time: "17:30", instructor: "Johan", location: "Core Gym Stockholm" },
-  { id: "cfaadeb1-1b60-4e6a-959d-7d79f05454a4", title: "Strength Training", date: "2025-09-27", time: "19:00", instructor: "Sara", location: "Core Gym Malmö" },
-  { id: "e71ad296-ab88-4653-bf48-d3cd82636bc7", title: "Gym Intro", date: "2025-09-28", time: "16:00", instructor: "Nils", location: "Core Gym Uppsala", totalSpots: "20", bookedSpots: "7" },
-  /*{ id: 1, title: "Yoga Flow", date: "2025-09-25", time: "18:00", instructor: "Anna", location: "Core Gym Göteborg" },
-  { id: 2, title: "HIIT Cardio", date: "2025-09-26", time: "17:30", instructor: "Johan", location: "Core Gym Stockholm" },
-  { id: 3, title: "Strength Training", date: "2025-09-27", time: "19:00", instructor: "Sara", location: "Core Gym Malmö" },
-  { id: 4, title: "Gym Intro", date: "2025-09-28", time: "16:00", instructor: "Nils", location: "Core Gym Uppsala" },
-  { id: 1, title: "Yoga Flow", date: "2025-09-25", time: "18:00", instructor: "Anna", location: "Core Gym Göteborg" },
-  { id: 2, title: "HIIT Cardio", date: "2025-09-26", time: "17:30", instructor: "Johan", location: "Core Gym Stockholm" },
-  { id: 3, title: "Strength Training", date: "2025-09-27", time: "19:00", instructor: "Sara", location: "Core Gym Malmö" },
-  { id: 4, title: "Gym Intro", date: "2025-09-28", time: "16:00", instructor: "Nils", location: "Core Gym Uppsala" },*/
-];
+// const workouts = [
+//   { id: "3d96f3e1-86eb-4139-bd1c-f6b96ff8cbb2", title: "Yoga Flow", date: "2025-09-25", time: "18:00", instructor: "Anna", location: "Core Gym Göteborg" }, //måste vara unika id
+//   { id: "3e8de47e-edf0-4caa-bb96-e83474ef3959", title: "HIIT Cardio", date: "2025-09-26", time: "17:30", instructor: "Johan", location: "Core Gym Stockholm" },
+//   { id: "cfaadeb1-1b60-4e6a-959d-7d79f05454a4", title: "Strength Training", date: "2025-09-27", time: "19:00", instructor: "Sara", location: "Core Gym Malmö" },
+//   { id: "e71ad296-ab88-4653-bf48-d3cd82636bc7", title: "Gym Intro", date: "2025-09-28", time: "16:00", instructor: "Nils", location: "Core Gym Uppsala", totalSpots: "20", bookedSpots: "7" },
+//   /*{ id: 1, title: "Yoga Flow", date: "2025-09-25", time: "18:00", instructor: "Anna", location: "Core Gym Göteborg" },
+//   { id: 2, title: "HIIT Cardio", date: "2025-09-26", time: "17:30", instructor: "Johan", location: "Core Gym Stockholm" },
+//   { id: 3, title: "Strength Training", date: "2025-09-27", time: "19:00", instructor: "Sara", location: "Core Gym Malmö" },
+//   { id: 4, title: "Gym Intro", date: "2025-09-28", time: "16:00", instructor: "Nils", location: "Core Gym Uppsala" },
+//   { id: 1, title: "Yoga Flow", date: "2025-09-25", time: "18:00", instructor: "Anna", location: "Core Gym Göteborg" },
+//   { id: 2, title: "HIIT Cardio", date: "2025-09-26", time: "17:30", instructor: "Johan", location: "Core Gym Stockholm" },
+//   { id: 3, title: "Strength Training", date: "2025-09-27", time: "19:00", instructor: "Sara", location: "Core Gym Malmö" },
+//   { id: 4, title: "Gym Intro", date: "2025-09-28", time: "16:00", instructor: "Nils", location: "Core Gym Uppsala" },*/
+// ];
 
 const PassList = () => {
   const navigate = useNavigate()
   const [bookedWorkouts, setBookedWorkouts] = useState([]) // lagrar bokade pass
+  const [workouts, setWorkouts] = useState([])
 
  
 
+  const fetchWorkouts = async () => {
+  try {
+    const res = await fetch("https://localhost:7214/api/workouts", {
+      method: 'GET'
+    });
+    if (res.ok) {
+      const data = await res.json();
+      setWorkouts(data);
+    }
+  } catch (error) {
+    console.error("Kunde inte hämta träningspass", error);
+  }
+};
 
+useEffect(() => {
+  fetchWorkouts()
+}, []);
 
 
 useEffect(() => {
@@ -53,8 +70,9 @@ const isBooked = bookedWorkouts.includes(workout.id);
 
    try { 
     let res;
+    const memberId = '0e7767ba-13fb-44c6-925a-3c22db351b1e'
     if (isBooked) {
-       res = await fetch(`https://localhost:7106/api/bookings/${workout.id}`, {
+       res = await fetch(`https://localhost:7106/api/bookings/${memberId}/${workout.id}`, {
         method:'DELETE', 
     
       });
@@ -75,6 +93,7 @@ const isBooked = bookedWorkouts.includes(workout.id);
           console.log(`Bokade pass ${workout.id}`);
           navigate(`/confirm/${workout.id}`, { state: workout });
         }
+        // fetchWorkouts();
       }else {
         alert('Något gick fel');
       }
