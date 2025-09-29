@@ -73,7 +73,7 @@ const Navbar = () => {
               )}
             </li>
 
-            <li><Link to="/PassList">Gruppträning</Link></li>
+            <li><Link to="/workoutlist">Gruppträning</Link></li>
           </ul>
 
           <div className="navbar-login" ref={userDropdownRef}>

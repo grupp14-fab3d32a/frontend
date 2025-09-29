@@ -1,5 +1,5 @@
 import React from 'react'
-import "../css/PassList.css"
+import "../css/WorkoutList.css"
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../components/AuthContext';
 
@@ -10,20 +10,19 @@ const workouts = [
   { id: 4, title: "Gym Intro", date: "2025-09-28", time: "16:00", instructor: "Nils", location: "Core Gym Uppsala" },
 ];
 
-const PassList = () => {
+const WorkoutList = () => {
   const {user, loading} = useAuth()
   const navigate = useNavigate()
  
   if (loading) return <p>Laddar...</p>;
   
   return (
-    <div className='Passlist'>
+    <div className='workoutlist'>
       {user?.roles?.includes('Admin') && (
         <button className='create-button' onClick={() => navigate('/CreateWorkoutForm')}>
           Skapa nytt pass
         </button>
       )}
-
       <h3 className='Headline-workout'>Kommande träningspass</h3>
       {workouts.length === 0 ? (
         <p className="List-item-workout">Inga träningspass tillgängliga just nu</p>
@@ -55,4 +54,4 @@ const PassList = () => {
   );
 };
 
-export default PassList
+export default WorkoutList
