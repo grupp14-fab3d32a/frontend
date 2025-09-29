@@ -93,7 +93,7 @@ const isBooked = bookedWorkouts.includes(workout.id);
           console.log(`Bokade pass ${workout.id}`);
           navigate(`/confirm/${workout.id}`, { state: workout });
         }
-        // fetchWorkouts();
+         fetchWorkouts();
       }else {
         alert('Något gick fel');
       }
