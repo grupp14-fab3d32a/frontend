@@ -6,7 +6,6 @@ import SignUpForm from './components/SignUpForm'
 import SignInForm from './components/SignInForm'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import CreateWorkoutForm from './components/CreateWorkoutForm'
-import DeleteWorkoutForm from './components/DeleteWorkoutForm'
 import Home from './pages/Home'
 import PassList from './pages/PassList'
 import UpdateWorkout from './pages/UpdateWorkout'
@@ -26,7 +25,6 @@ function App() {
             <Route path="/signup" element={<SignUpForm />} />
             <Route path="/signin" element={<SignInForm />} />
             <Route path="/createworkoutform" element={<CreateWorkoutForm />} />
-            <Route path="/deleteworkoutform" element={<DeleteWorkoutForm />} />
             <Route path="/update/:id" element={<UpdateWorkout />} />
             <Route path="/updateProfile" element={<UpdateProfile />} />
           </Routes>
