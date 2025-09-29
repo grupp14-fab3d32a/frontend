@@ -1,21 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState} from 'react';
 import "../css/WorkoutList.css"
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../components/AuthContext';
-
-const workouts = [
-  { id: 1, title: "Yoga Flow", date: "2025-09-25", time: "18:00", instructor: "Anna", location: "Core Gym Göteborg" },
-  { id: 2, title: "HIIT Cardio", date: "2025-09-26", time: "17:30", instructor: "Johan", location: "Core Gym Stockholm" },
-  { id: 3, title: "Strength Training", date: "2025-09-27", time: "19:00", instructor: "Sara", location: "Core Gym Malmö" },
-  { id: 4, title: "Gym Intro", date: "2025-09-28", time: "16:00", instructor: "Nils", location: "Core Gym Uppsala" },
-];
+import { getAllWorkouts } from '../services/scheduleApi';
 
 const WorkoutList = () => {
-  const {user, loading} = useAuth()
-  const navigate = useNavigate()
- 
-  if (loading) return <p>Laddar...</p>;
+  const { user, loading: authLoading } = useAuth();
+  const navigate = useNavigate();
+  const [workouts, setWorkouts] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchWorkouts = async () => {
+      try {
+        const data = await getAllWorkouts();
+        setWorkouts(data);
+        
+      } catch (error) {
+        setError(error.message || 'Något gick fel vid hämtning av träningspass.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+  fetchWorkouts();
+}, []);
+
+  if (authLoading || loading) return <p>Laddar...</p>;
+  if (error) return <p className="error-message">{error}</p>;
   
+
+  //Workoutlist is visible for all users, but only admin can create and update workouts.
+
   return (
     <div className='workoutlist'>
       {user?.roles?.includes('Admin') && (
@@ -34,12 +50,15 @@ const WorkoutList = () => {
               <h6 className='title-workout'>{workout.title}</h6>
               <p className='instructor-workout'>Instruktör: {workout.instructor}</p>
               <p className='location-workout'>{workout.location}</p>
+
+              {user?.roles?.includes('Admin') && (
               <button
                 className='update-button'
-                onClick={() => navigate(`/update/${workout}`)}
+                onClick={() => navigate(`/update/${workout.id}`)}
               >
                 Uppdatera
               </button>
+              )}
               <button
                 className='button button-secondary'
                 onClick={() => navigate(`/confirm/${workout.id}`, { state: workout })}
