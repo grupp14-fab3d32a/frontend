@@ -1,8 +1,8 @@
 import React from 'react'
 import { useParams, useNavigate } from "react-router-dom"
-import "../css/UpdatePass.css"
+import "../css/UpdateWorkout.css"
 
-const UpdatePass = () => {
+const UpdateWorkout = () => {
   const { id } = useParams()
   const navigate = useNavigate()
 
@@ -54,4 +54,4 @@ const UpdatePass = () => {
   )
 }
 
-export default UpdatePass
+export default UpdateWorkout;

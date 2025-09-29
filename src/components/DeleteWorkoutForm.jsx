@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import "../css/Confirm.css";  
-  import "../css/Deleteform.css";
+  import "../css/DeleteWorkoutForm.css";
 
 const CreateClass = () => {
   const [formData, setFormData] = useState({title:'', description:'' });

@@ -19,7 +19,7 @@ const PassList = () => {
   return (
     <div className='Passlist'>
       {user?.roles?.includes('Admin') && (
-        <button className='create-button' onClick={() => navigate('/createform')}>
+        <button className='create-button' onClick={() => navigate('/CreateWorkoutForm')}>
           Skapa nytt pass
         </button>
       )}
