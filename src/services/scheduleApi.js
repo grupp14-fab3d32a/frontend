@@ -13,7 +13,7 @@ export async function getAllWorkouts() {
 
 // POST: Create a new workout
 export async function createWorkout(workout) {
-  const response = await fetch(`${API_BASE_URL}/workouts`, {
+  const response = await fetch(`${API_BASE_URL}/workouts/create`, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(workout),

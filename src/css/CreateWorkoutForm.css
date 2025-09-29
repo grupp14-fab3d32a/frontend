@@ -1,64 +1,70 @@
 @import url(app.css);
 
+/* ----- FORM GROUP ----- */
 .form-group {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 1rem;
+  width: 100%;
 }
 
+/* ----- SHARED INPUT + TEXTAREA STYLES ----- */
 .form-group input,
 .form-group textarea {
   width: 100%;
   padding: 0.75rem;
-  border-radius: 0.5rem;
-  border: 1px solid;
-  font-size: 1rem;
-  text-align: center; 
-}
-
-textarea {
-  min-height: 80px;
-  resize: none;
-  border: 1px solid #333;
+  margin-bottom: 0.5rem;
+  border: 1px solid #333;              /* default dark border */
   border-radius: 8px;
   font-size: 1rem;
-  
-  background-color: #2a2f32;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  background-color: #2a2f32;           /* dark background */
+  color: #e9e8e8;                      /* light text */
+  outline: none;                       /* remove browser default outline */
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-textarea::placeholder {
-   color: #e9e8e8;
- font-family: "Inter", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+/* ----- PLACEHOLDER STYLING ----- */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #e9e8e8;
+  font-weight: 400;
+  font-style: normal;
 }
 
-input::placeholder {
-   color: #e9e8e8;
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+/* ----- TEXTAREA SPECIFIC ----- */
+textarea {
+  min-height: 80px;
+  resize: none;
 }
-input {
-        width: 100%;
-        padding: 12px 15px;
-        margin-bottom: 15px;
-        border: 1px solid #333;
-        border-radius: 8px;
-        font-size: 1rem;
-        background-color: #2a2f32;
-        color: #e9e8e8;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
-    }
+/* ----- FOCUS STATE ----- */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #666;                  /* lighter gray border */
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); /* subtle glow */
+}
 
+/* ----- ERROR STATE ----- */
+.error {
+  border-color: #e53935 !important;    /* red border on validation error */
+}
+
+.error-message {
+  color: #e53935;
+  font-size: 0.875rem;
+  margin-top: -0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ----- BUTTON GROUP ----- */
 .button-group {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%; 
+  width: 100%;
 }
 
 
