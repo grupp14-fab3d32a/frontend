@@ -24,8 +24,8 @@ export async function signUp(user) {
     body: JSON.stringify(user)
   })
   if (!response.ok) {
-    const text = await response.json()
-    throw new Error(text)
+    throw await response.json()
+
   }
   return await response.json()
 }

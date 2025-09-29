@@ -1,5 +1,5 @@
-import React from 'react'
 import { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import { signUp } from '../services/authService';
 
 function SignUpForm() {
@@ -8,9 +8,9 @@ function SignUpForm() {
         lastName: "",
         email: "",
         password: "",
-        // confirmPassword: ""
+        confirmPassword: ""
     })
-
+    const navigate = useNavigate()
     const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
@@ -128,13 +128,16 @@ function SignUpForm() {
 
         try {
             const result = await signUp(formData)
-            if (result.isSuccess) {
-                setErrors({});
-                navigate('/signin')
-            }
+
+            setErrors({});
+            navigate('/signin')
         }
-        catch (error) {
-            console.log('Registration failed:', error.message)
+        catch (e) {
+            if (e.errors) {
+                const dupEmail = e.errors.find(err => err.code === "DuplicateEmail")
+                setErrors({ ['email']: dupEmail.description })
+            }
+            console.log(e)
         }
     };
 
