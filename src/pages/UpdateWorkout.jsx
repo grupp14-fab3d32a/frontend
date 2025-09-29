@@ -1,8 +1,7 @@
 import React from 'react'
 import { useParams, useNavigate } from "react-router-dom"
 import "../css/UpdateWorkout.css"
-import { updateWorkout } from '../services/scheduleApi'
-import { deleteWorkout } from '../services/scheduleApi'
+import { updateWorkout, deleteWorkout } from '../services/scheduleApi'
 
 const UpdateWorkout = () => {
   const { id } = useParams()
