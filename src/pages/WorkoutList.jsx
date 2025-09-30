@@ -97,9 +97,9 @@ const WorkoutList = () => {
   if (error) return <p className="error-message">{error}</p>;
 
   return (
-    <div className="Passlist">
+    <div className="workoutlist">
       {user?.roles?.includes("Admin") && (
-        <button className="create-button" onClick={() => navigate("/createform")}>
+        <button className="create-button" onClick={() => navigate("/CreateWorkoutForm")}>
           Skapa nytt pass
         </button>
       )}

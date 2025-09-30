@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../css/Confirm.css";  
-import "../css/Createform.css";
+import "../css/CreateWorkoutForm.css";
 
-const CreateClass = ({ onClose }) => {
+const CreateWorkout = ({ onClose }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: '', 
@@ -193,4 +193,4 @@ const CreateClass = ({ onClose }) => {
   );
 };
 
-export default CreateClass;
+export default CreateWorkout;
