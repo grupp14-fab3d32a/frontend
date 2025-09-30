@@ -5,7 +5,7 @@ import { useAuth } from '../components/AuthContext';
 import { getAllWorkouts } from '../services/scheduleApi';
 
 const WorkoutList = () => {
-  const { user:mockAuthUser, loading: authLoading } = useAuth();  // For testing, add :mockAuthUser after user, and uncomment the mock user below
+  const { user, loading: authLoading } = useAuth();  // For testing, add :mockAuthUser after user, and uncomment the mock user below
   const navigate = useNavigate();
 
   const [bookedWorkouts, setBookedWorkouts] = useState([]); // lagrar bokade pass
@@ -13,11 +13,11 @@ const WorkoutList = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const user = mockAuthUser ?? {
-  id: "1234",
-  email: "admin@test.com",
-  roles: ["Admin", "Member"], 
-};
+//   const user = mockAuthUser ?? {
+//   id: "1234",
+//   email: "admin@test.com",
+//   roles: ["Admin", "Member"], 
+// };
   
 
   // Hämta alla träningspass
