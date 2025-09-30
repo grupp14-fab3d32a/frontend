@@ -29,7 +29,7 @@
     color: var(--clr-secondary);
 }
 
-.Passlist {
+.workoutlist {
     margin: 0 10rem;
     display: flex;
     flex-direction: column;

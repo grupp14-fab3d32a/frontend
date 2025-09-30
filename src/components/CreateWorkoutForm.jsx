@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../css/Confirm.css";  
 import "../css/CreateWorkoutForm.css";
+import { createWorkout } from "../services/scheduleApi";
 
 const CreateWorkout = ({ onClose }) => {
   const navigate = useNavigate();
@@ -69,27 +70,19 @@ const CreateWorkout = ({ onClose }) => {
 
     setErrors({});
 
-    try { //lägg in API url sen
-      const res = await fetch("", {
-        method:'POST', 
-        headers: {
-          'Content-type' : 'application/json',
-        },
-        body: JSON.stringify(formData)
-      })
+    try { 
+      await createWorkout(formData);
 
-      if (res.ok) {
         alert('Pass har skapats!');
         setFormData({title: '', description: '', date: '', time: '', trainer: '', totalSpots: '',});
         if (onClose) {
           onClose();
-        }
-      } else {
-        alert('Något gick fel. Försök igen.');
       }
+      
     } catch (error) {
-      alert('Kunde inte ansluta till servern.');
-    }
+        console.error('API error:', error);
+        alert(error.message || 'Något gick fel. Försök igen.');
+      }
   }
 
   const handleCancel = (e) => {
