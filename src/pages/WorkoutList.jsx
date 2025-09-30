@@ -5,13 +5,19 @@ import { useAuth } from '../components/AuthContext';
 import { getAllWorkouts } from '../services/scheduleApi';
 
 const WorkoutList = () => {
-  const { user, loading: authLoading } = useAuth();
+  const { user:mockAuthUser, loading: authLoading } = useAuth();  // For testing, add :mockAuthUser after user, and uncomment the mock user below
   const navigate = useNavigate();
 
   const [bookedWorkouts, setBookedWorkouts] = useState([]); // lagrar bokade pass
   const [workouts, setWorkouts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const user = mockAuthUser ?? {
+  id: "1234",
+  email: "admin@test.com",
+  roles: ["Admin", "Member"], 
+};
   
 
   // Hämta alla träningspass
@@ -112,7 +118,7 @@ const WorkoutList = () => {
         <ul className="List-workout">
           {workouts.map((workout) => (
             <li className="List-item-workout" key={workout.id}>
-              <p>{workout.date} - {workout.time}</p>
+              <p>{workout.date} - {workout.startTime}</p>
               <h6 className="title-workout">{workout.title}</h6>
               <p className="instructor-workout">Instruktör: {workout.instructor}</p>
               <p className="location-workout">{workout.location}</p>

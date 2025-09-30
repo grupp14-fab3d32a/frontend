@@ -10,9 +10,11 @@ const UpdateWorkout = () => {
   const [formData, setFormData] = React.useState({
   title: '',
   date: '',
-  time: '',
-  trainer: '',
-  location: ''
+  startTime: '',
+  instructor: '',
+  location: '',
+  totalSpots: ''
+  
 });
 
   const handleDelete = async () => {
@@ -58,15 +60,19 @@ const UpdateWorkout = () => {
           </label>
           <label>
             Tid
-            <input type="time" value={formData.time} onChange={(e) => setFormData({ ...formData, time: e.target.value })} />
+            <input type="time" value={formData.startTime} onChange={(e) => setFormData({ ...formData, startTime: e.target.value })} />
           </label>
           <label>
             Instruktör
-            <input type="text" placeholder="Ex. Anna" value={formData.trainer} onChange={(e) => setFormData({ ...formData, trainer: e.target.value })} />
+            <input type="text" placeholder="Ex. Anna" value={formData.instructor} onChange={(e) => setFormData({ ...formData, instructor: e.target.value })} />
           </label>
           <label>
             Plats
             <input type="text" placeholder="Ex. Core Gym Göteborg" value={formData.location} onChange={(e) => setFormData({ ...formData, location: e.target.value })} />
+          </label>
+          <label>
+            Antal platser
+            <input type="number" placeholder="Ex. 20" value={formData.totalSpots} onChange={(e) => setFormData({ ...formData, totalSpots: e.target.value })} />
           </label>
 
           <div className="update-buttons">
