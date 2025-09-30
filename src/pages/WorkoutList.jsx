@@ -12,6 +12,7 @@ const WorkoutList = () => {
   const [workouts, setWorkouts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  
 
   // Hämta alla träningspass
   const fetchWorkouts = async () => {
@@ -51,8 +52,8 @@ const WorkoutList = () => {
   const handleBooking = async (workout) => {
     if (!user) {
       alert("Du måste vara inloggad för att boka.");
-      return;
-    }
+      return; 
+    } 
 
     const requestData = {
       memberId: user.id.toString(),
