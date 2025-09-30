@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import "../css/PassList.css";
+import "../css/WorkoutList.css";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../components/AuthContext';
 import { getAllWorkouts } from '../services/scheduleApi';
 
-const PassList = () => {
+const WorkoutList = () => {
   const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
 
@@ -142,4 +142,4 @@ const PassList = () => {
   );
 };
 
-export default PassList;
+export default WorkoutList;
