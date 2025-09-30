@@ -65,3 +65,15 @@
 .create-button:hover {
     background: var(--clr-secondary);
 }
+
+.spots-left {
+  font-size: 0.9rem;
+  margin: 0.25rem 0;
+  font-weight: 500;
+  color: #e9e8e8;
+}
+
+.spots-left .number {
+  color: #dc3545;
+  font-weight: 600;
+}

@@ -11,7 +11,8 @@ const CreateWorkout = ({ onClose }) => {
     description: '', 
     date: '', 
     time: '', 
-    trainer: ''
+    trainer: '',
+    totalSpots: ''
   });
   const [errors, setErrors] = useState({});
 
@@ -45,6 +46,14 @@ const CreateWorkout = ({ onClose }) => {
     } else if (formData.description.trim().length > 500) {
       newErrors.description = 'Beskrivning får vara max 500 tecken';
     }
+    // Total spots validation
+     if (!formData.totalSpots) {
+    newErrors.totalSpots = 'Antal platser är obligatoriskt';
+  } else if (formData.totalSpots < 1) {
+    newErrors.totalSpots = 'Minst 1 plats krävs';
+  } else if (formData.totalSpots > 50) {
+    newErrors.totalSpots = 'Max 50 platser tillåtet';
+  }
 
     return newErrors;
   }
@@ -65,8 +74,7 @@ const CreateWorkout = ({ onClose }) => {
       await createWorkout(formData);
 
         alert('Pass har skapats!');
-      setFormData({ title: '', description: '', date: '', time: '', trainer: '' });
-      
+        setFormData({title: '', description: '', date: '', time: '', trainer: '', totalSpots: '',});
         if (onClose) {
           onClose();
       }
@@ -143,6 +151,21 @@ const CreateWorkout = ({ onClose }) => {
               placeholder="Tränare" 
             />
           </div>
+
+          
+        <div className="form-group">
+               <input 
+               type="number" 
+               id="totalSpots" 
+               value={formData.totalSpots} 
+               onChange={handleChange} 
+               placeholder="Totalt antal platser"
+               min="1"
+               max="100"
+               className={errors.totalSpots ? 'error' : ''} />
+  {errors.totalSpots && <span className="error-message">{errors.totalSpots}</span>}
+</div>
+
 
           <div className="button-group">
             <button type="submit" className='button button-secondary'>
