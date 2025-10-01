@@ -10,8 +10,9 @@ const CreateWorkout = ({ onClose }) => {
     title: '', 
     description: '', 
     date: '', 
-    time: '', 
-    trainer: '',
+    startTime: '', 
+    instructor: '',
+    location: '',
     totalSpots: ''
   });
   const [errors, setErrors] = useState({});
@@ -34,8 +35,8 @@ const CreateWorkout = ({ onClose }) => {
       newErrors.title = 'Titel är obligatorisk';
     } else if (formData.title.trim().length < 3) {
       newErrors.title = 'Titel måste vara minst 3 tecken';
-    } else if (formData.title.trim().length > 50) {
-      newErrors.title = 'Titel får vara max 50 tecken';
+    } else if (formData.title.trim().length > 100) {
+      newErrors.title = 'Titel får vara max 100 tecken';
     }
 
     // Description validation
@@ -43,8 +44,28 @@ const CreateWorkout = ({ onClose }) => {
       newErrors.description = 'Beskrivning är obligatorisk';
     } else if (formData.description.trim().length < 10) {
       newErrors.description = 'Beskrivning måste vara minst 10 tecken';
-    } else if (formData.description.trim().length > 500) {
-      newErrors.description = 'Beskrivning får vara max 500 tecken';
+    } else if (formData.description.trim().length > 2000) {
+      newErrors.description = 'Beskrivning får vara max 2000 tecken';
+    }
+
+    // Location validation
+    if (!formData.location.trim()) {
+      newErrors.location = 'Plats är obligatorisk';
+    }
+    else if (formData.location.trim().length < 3) {
+      newErrors.location = 'Plats måste vara minst 3 tecken';
+    } else if (formData.location.trim().length > 100) {
+      newErrors.location = 'Plats får vara max 100 tecken';
+    }
+
+    // Instructor validation
+    if (!formData.instructor.trim()) {
+      newErrors.instructor = 'Instruktör är obligatorisk';
+    }
+    else if (formData.instructor.trim().length < 3) {
+      newErrors.instructor = 'Instruktör måste vara minst 3 tecken';
+    } else if (formData.instructor.trim().length > 100) {
+      newErrors.instructor = 'Instruktör får vara max 100 tecken';
     }
     // Total spots validation
      if (!formData.totalSpots) {
@@ -74,7 +95,7 @@ const CreateWorkout = ({ onClose }) => {
       await createWorkout(formData);
 
         alert('Pass har skapats!');
-        setFormData({title: '', description: '', date: '', time: '', trainer: '', totalSpots: '',});
+        setFormData({title: '', description: '', date: '', startTime: '', instructor: '', totalSpots: '',});
         if (onClose) {
           onClose();
       }
@@ -135,8 +156,8 @@ const CreateWorkout = ({ onClose }) => {
           <div className="form-group">
             <input 
               type="time" 
-              id="time" 
-              value={formData.time}
+              id="startTime" 
+              value={formData.startTime}
               onChange={handleChange}
               placeholder="Tid" 
             />
@@ -145,13 +166,22 @@ const CreateWorkout = ({ onClose }) => {
           <div className="form-group">
             <input 
               type="text" 
-              id="trainer" 
-              value={formData.trainer}
+              id="instructor" 
+              value={formData.instructor}
               onChange={handleChange}
-              placeholder="Tränare" 
+              placeholder="Instruktör" 
             />
           </div>
 
+          <div className="form-group">
+            <input 
+              type="text" 
+              id="location" 
+              value={formData.location}
+              onChange={handleChange}
+              placeholder="Plats" 
+            />
+          </div>
           
         <div className="form-group">
                <input 
@@ -163,8 +193,8 @@ const CreateWorkout = ({ onClose }) => {
                min="1"
                max="100"
                className={errors.totalSpots ? 'error' : ''} />
-  {errors.totalSpots && <span className="error-message">{errors.totalSpots}</span>}
-</div>
+                {errors.totalSpots && <span className="error-message">{errors.totalSpots}</span>}
+        </div>
 
 
           <div className="button-group">
