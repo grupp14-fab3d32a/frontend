@@ -24,7 +24,7 @@ const Confirm = () => {
 
                 <button 
           className="btn-primary" 
-          onClick={() => navigate('/PassList')}
+          onClick={() => navigate('/workoutlist')}
         >
           Tillbaka till passlistan
         </button>
