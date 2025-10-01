@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { signIn } from '../services/authService'
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 function SignInForm() {
-
-    const [formData, setFormData] = useState({
-        username: "",
-        password: ""
-    });
-    const [errors, setErrors] = useState({});
+    const [formData, setFormData] = useState({ email: "", password: "" })
+    const [errors, setErrors] = useState({})
+    const [loginError, setLoginError] = useState("")
+    const { decodeAndSetUser } = useAuth()
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -16,28 +18,49 @@ function SignInForm() {
     const validate = () => {
         let newErrors = {};
 
-        if (!formData.username) {
-            newErrors.username = "Användarnamn är obligatoriskt.";
+        if (!formData.email) {
+            newErrors.email = "Användarnamn är obligatoriskt.";
         }
         if (!formData.password) {
             newErrors.password = "Lösenord är obligatoriskt.";
         }
-
         return newErrors;
     };
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const validationErrors = validate();
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
-        } else {
-            setErrors({});
-            console.log("Login skickas till backend:", formData);
-            //FETCH till API här sen.
+            return
         }
+
+        try {
+            const result = await signIn(formData)
+            if (result.isSuccess) {
+                localStorage.setItem("token", result.token)
+                decodeAndSetUser(result.token)
+                setErrors({});
+                setLoginError("")
+                navigate('/')
+            }
+        }
+        catch (error) {
+            console.log('Login failed:', error.message)
+            if (error.message) {
+                try {
+                    const errObj = JSON.parse(error.message)
+                    setLoginError(errObj.message || "Login failed")
+                } catch {
+                    setLoginError(error.message)
+                }
+            } else {
+                setLoginError("Login failed.")
+            }
+        }
+
     };
 
     return (
@@ -48,8 +71,8 @@ function SignInForm() {
 
                     <div className="input-group-auth">
                         <input className='clr-text-white'
-                            type="text"
-                            name="username"
+                            type="email"
+                            name="email"
                             placeholder="Användarnamn"
                             value={formData.username}
                             onChange={handleChange}
@@ -70,6 +93,7 @@ function SignInForm() {
                         {errors.password && <span className="form-error-message">{errors.password}</span>}
                     </div>
 
+                    {loginError && <p className="form-error-message">{loginError}</p>}
 
                     <div className='forgot-container'>
                         <a href="" className='clr-text-white'>Glömt lösenord?</a>

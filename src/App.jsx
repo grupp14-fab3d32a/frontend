@@ -5,12 +5,12 @@ import './css/app.css'
 import SignUpForm from './components/SignUpForm'
 import SignInForm from './components/SignInForm'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Createform from './components/Createform'
-import Deleteform from './components/Deleteform'
+import CreateWorkoutForm from './components/CreateWorkoutForm'
 import Home from './pages/Home'
-import PassList from './pages/PassList'
-import UpdatePass from './pages/UpdatePass'
+import WorkoutList from './pages/WorkoutList'
+import UpdateWorkout from './pages/UpdateWorkout'
 import UpdateProfile from './pages/UpdateProfile'
+import HistoryWorkout from './pages/HistoryWorkout'
 
 
 function App() {
@@ -21,14 +21,14 @@ function App() {
         <main className="app-main">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/PassList" element={<PassList />} />
+            <Route path="/workoutlist" element={<WorkoutList />} />
             <Route path="/confirm/:id" element={<Confirm />} />
             <Route path="/signup" element={<SignUpForm />} />
             <Route path="/signin" element={<SignInForm />} />
-            <Route path="/createform" element={<Createform/>} />
-            <Route path="/deleteform" element={<Deleteform/>} />
-            <Route path="/update/:id" element={<UpdatePass />} />
+            <Route path="/createworkoutform" element={<CreateWorkoutForm />} />
+            <Route path="/update/:id" element={<UpdateWorkout />} />
             <Route path="/updateProfile" element={<UpdateProfile />} />
+            <Route path="/workouthistory" element={<HistoryWorkout />} />
           </Routes>
         </main>
         <Footer />

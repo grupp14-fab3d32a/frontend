@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import "../css/Confirm.css";  
-import "../css/Createform.css";
+import "../css/CreateWorkoutForm.css";
+import { createWorkout } from "../services/scheduleApi";
 
-const CreateClass = ({ onClose }) => {
+const CreateWorkout = ({ onClose }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: '', 
     description: '', 
     date: '', 
-    time: '', 
-    trainer: '',
+    startTime: '', 
+    instructor: '',
+    location: '',
     totalSpots: ''
   });
   const [errors, setErrors] = useState({});
@@ -33,8 +35,8 @@ const CreateClass = ({ onClose }) => {
       newErrors.title = 'Titel är obligatorisk';
     } else if (formData.title.trim().length < 3) {
       newErrors.title = 'Titel måste vara minst 3 tecken';
-    } else if (formData.title.trim().length > 50) {
-      newErrors.title = 'Titel får vara max 50 tecken';
+    } else if (formData.title.trim().length > 100) {
+      newErrors.title = 'Titel får vara max 100 tecken';
     }
 
     // Description validation
@@ -42,8 +44,28 @@ const CreateClass = ({ onClose }) => {
       newErrors.description = 'Beskrivning är obligatorisk';
     } else if (formData.description.trim().length < 10) {
       newErrors.description = 'Beskrivning måste vara minst 10 tecken';
-    } else if (formData.description.trim().length > 500) {
-      newErrors.description = 'Beskrivning får vara max 500 tecken';
+    } else if (formData.description.trim().length > 2000) {
+      newErrors.description = 'Beskrivning får vara max 2000 tecken';
+    }
+
+    // Location validation
+    if (!formData.location.trim()) {
+      newErrors.location = 'Plats är obligatorisk';
+    }
+    else if (formData.location.trim().length < 3) {
+      newErrors.location = 'Plats måste vara minst 3 tecken';
+    } else if (formData.location.trim().length > 100) {
+      newErrors.location = 'Plats får vara max 100 tecken';
+    }
+
+    // Instructor validation
+    if (!formData.instructor.trim()) {
+      newErrors.instructor = 'Instruktör är obligatorisk';
+    }
+    else if (formData.instructor.trim().length < 3) {
+      newErrors.instructor = 'Instruktör måste vara minst 3 tecken';
+    } else if (formData.instructor.trim().length > 100) {
+      newErrors.instructor = 'Instruktör får vara max 100 tecken';
     }
     // Total spots validation
      if (!formData.totalSpots) {
@@ -69,27 +91,19 @@ const CreateClass = ({ onClose }) => {
 
     setErrors({});
 
-    try { //lägg in API url sen
-      const res = await fetch("", {
-        method:'POST', 
-        headers: {
-          'Content-type' : 'application/json',
-        },
-        body: JSON.stringify(formData)
-      })
+    try { 
+      await createWorkout(formData);
 
-      if (res.ok) {
         alert('Pass har skapats!');
-        setFormData({title: '', description: '', date: '', time: '', trainer: '', totalSpots: '',});
+        setFormData({title: '', description: '', date: '', startTime: '', instructor: '', totalSpots: '',});
         if (onClose) {
           onClose();
-        }
-      } else {
-        alert('Något gick fel. Försök igen.');
       }
+      
     } catch (error) {
-      alert('Kunde inte ansluta till servern.');
-    }
+        console.error('API error:', error);
+        alert(error.message || 'Något gick fel. Försök igen.');
+      }
   }
 
   const handleCancel = (e) => {
@@ -142,8 +156,8 @@ const CreateClass = ({ onClose }) => {
           <div className="form-group">
             <input 
               type="time" 
-              id="time" 
-              value={formData.time}
+              id="startTime" 
+              value={formData.startTime}
               onChange={handleChange}
               placeholder="Tid" 
             />
@@ -152,13 +166,22 @@ const CreateClass = ({ onClose }) => {
           <div className="form-group">
             <input 
               type="text" 
-              id="trainer" 
-              value={formData.trainer}
+              id="instructor" 
+              value={formData.instructor}
               onChange={handleChange}
-              placeholder="Tränare" 
+              placeholder="Instruktör" 
             />
           </div>
 
+          <div className="form-group">
+            <input 
+              type="text" 
+              id="location" 
+              value={formData.location}
+              onChange={handleChange}
+              placeholder="Plats" 
+            />
+          </div>
           
         <div className="form-group">
                <input 
@@ -170,8 +193,8 @@ const CreateClass = ({ onClose }) => {
                min="1"
                max="100"
                className={errors.totalSpots ? 'error' : ''} />
-  {errors.totalSpots && <span className="error-message">{errors.totalSpots}</span>}
-</div>
+                {errors.totalSpots && <span className="error-message">{errors.totalSpots}</span>}
+        </div>
 
 
           <div className="button-group">
@@ -193,4 +216,4 @@ const CreateClass = ({ onClose }) => {
   );
 };
 
-export default CreateClass;
+export default CreateWorkout;

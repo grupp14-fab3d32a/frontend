@@ -1,12 +1,12 @@
 
 import React, { useState } from "react";
 import "../css/Confirm.css";    
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation , useNavigate } from "react-router-dom";
 
 const Confirm = () => {
 
   const { state } = useLocation();
-  const navigate = useNavigate();
+   const navigate = useNavigate();
 
   return (
      <div className="confirm-wrapper">
@@ -22,7 +22,13 @@ const Confirm = () => {
           <p><span>Plats:</span> Stockholm</p>
         </div>
 
-        <button className="btn-primary" onClick={() => navigate('/Passlist')}>Tillbaka till startsidan</button>
+                <button 
+          className="btn-primary" 
+          onClick={() => navigate('/PassList')}
+        >
+          Tillbaka till passlistan
+        </button>
+
       </div>
     </div>
   );
