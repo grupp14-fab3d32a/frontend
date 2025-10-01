@@ -5,7 +5,7 @@ export async function getAllWorkouts() {
   const response = await fetch(`${API_BASE_URL}/workouts`);
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch workouts. Status: ${response.status}`);
+    throw new Error("Något gick fel vid hämtning av träningspass.");
   }
 
   return response.json();
