@@ -40,7 +40,7 @@ const Navbar = () => {
   const handleLogout = () => {
     logout()
     setShowUserDropdown(false)
-    navigate('/')
+    navigate('/', { state: { logoutMessage: "Du har loggats ut" } })
   }
 
   return (
@@ -91,8 +91,8 @@ const Navbar = () => {
                 )}
               </>
             ) : (
-              <Link to="/signin">
-                <FaUserCircle className="login-icon" />
+              <Link to="/signin" className="login-button" >
+                Logga in
               </Link>
             )}
           </div>

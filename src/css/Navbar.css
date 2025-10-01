@@ -169,6 +169,17 @@
   color: #ffffff;
 }
 
+.login-button {
+  padding: 0.5rem 1rem;
+  color: #61b390;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: background 0.2s ease;
+}
+.login-button:hover {
+  color: #ffffff;
+}
 
 @media (max-width: 768px) {
 
