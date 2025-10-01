@@ -1,10 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import '../css/Home.css'
 
 const Home = () => {
+
+  const location = useLocation()
+  const [logoutMessage, setLogoutMessage] = useState("")
+
+  useEffect(() => {
+    if (location.state?.logoutMessage) {
+      setLogoutMessage(location.state.logoutMessage)
+    }
+  }, [location.state])
+
   return (
     <div className="home">
       <header className="hero">
+        {logoutMessage && (
+          <div className="logout-box">
+            <span>{logoutMessage}</span>
+            <button className="close-btn" onClick={() => setLogoutMessage("")}>×</button>
+          </div>
+        )}
         <div className="hero-overlay">
           <h1>Välkommen till Core Gym club</h1>
           <p>Din plats för styrka, hälsa och gemenskap</p>
