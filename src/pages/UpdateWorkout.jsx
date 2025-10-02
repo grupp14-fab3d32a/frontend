@@ -1,21 +1,47 @@
 import React from 'react'
 import { useParams, useNavigate } from "react-router-dom"
 import "../css/UpdateWorkout.css"
-import { updateWorkout, deleteWorkout } from '../services/scheduleApi'
+import { updateWorkout, deleteWorkout, getWorkoutById  } from '../services/scheduleApi'
 
 const UpdateWorkout = () => {
   const { id } = useParams()
   const navigate = useNavigate()
+  const [loading, setLoading] = React.useState(true);
 
   const [formData, setFormData] = React.useState({
   title: '',
+  description: '',
   date: '',
   startTime: '',
   instructor: '',
   location: '',
   totalSpots: ''
-  
 });
+
+  React.useEffect(() => {
+    const fetchWorkout = async () => {
+      try {
+        const data = await getWorkoutById(id);
+
+        setFormData({
+          title: data.title || '',
+          description: data.description || '',
+          date: data.date?.substring(0, 10) || '', // format to yyyy-mm-dd
+          startTime: data.startTime || '',
+          instructor: data.instructor || '',
+          location: data.location || '',
+          totalSpots: data.totalSpots || ''
+        });
+      } catch (error) {
+        alert('Kunde inte ladda passet: ' + error.message);
+      }
+      finally {
+        setLoading(false);
+      }
+    };
+
+    fetchWorkout();
+  }, [id]);
 
   const handleDelete = async () => {
   const confirmDelete = window.confirm("Är du säker på att du vill ta bort detta pass?");
@@ -34,7 +60,11 @@ const UpdateWorkout = () => {
     e.preventDefault()
 
     try {
-      const updatedWorkout = { ...formData, Id: id };
+      const updatedWorkout = {
+        ...formData,
+        Id: id,
+        totalSpots: parseInt(formData.totalSpots, 10) || 0  // Ensure totalSpots is an integer
+      };
 
       await updateWorkout(id, updatedWorkout);
       alert('Passet har uppdaterats!');
@@ -43,6 +73,8 @@ const UpdateWorkout = () => {
       alert('Fel vid uppdatering: ' + error.message);
     }
   };
+
+  if (loading) return <p>Laddar...</p>;
 
   return (
     <div className="update-container">
@@ -53,6 +85,10 @@ const UpdateWorkout = () => {
           <label>
             Titel
             <input type="text" placeholder="Ex. Yoga Flow" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
+          </label>
+          <label>
+            Beskrivning
+            <textarea placeholder="Ex. Ett lugnt och flödande yogapass för alla nivåer." value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} />
           </label>
           <label>
             Datum

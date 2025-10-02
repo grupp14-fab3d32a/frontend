@@ -134,13 +134,14 @@ const WorkoutList = () => {
                   Uppdatera
                 </button>
               )}
-
+              {user?.roles?.includes("User") && (
               <button
                 className="button button-secondary"
                 onClick={() => handleBooking(workout)}
               >
                 {bookedWorkouts.includes(workout.id.toString()) ? "Avboka" : "Boka"}
-              </button>
+                </button>
+              )}
             </li>
           ))}
         </ul>
