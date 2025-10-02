@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { signUp } from '../services/authService';
+import { Link } from 'react-router-dom'
 
 function SignUpForm() {
     const [formData, setFormData] = useState({
@@ -151,7 +152,7 @@ function SignUpForm() {
                         <input className='clr-text-white'
                             type="text" name="firstName"
                             placeholder="Namn"
-                            value={formData.userName}
+                            value={formData.firstName}
                             onChange={handleChange}
                             required
                         />
@@ -203,7 +204,7 @@ function SignUpForm() {
                     </div>
 
                     <button type="submit" className='button button-secondary'>Skapa användare</button>
-                    <a href="/signin" className='clr-text-white'>Har du redan ett konto?</a>
+                    <Link to="/signin" className='clr-text-white'>Har du redan ett konto?</Link>
                 </form>
             </div>
         </div>
