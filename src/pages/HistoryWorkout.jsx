@@ -1,14 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "../css/WorkoutHistory.css";
-
-const workouts = [
-    { id: 1, title: "Yoga Flow", date: "2025-09-25", time: "18:00", instructor: "Anna", location: "Core Gym Göteborg" },
-    { id: 2, title: "HIIT Cardio", date: "2025-09-26", time: "17:30", instructor: "Johan", location: "Core Gym Stockholm" },
-    { id: 3, title: "Strength Training", date: "2025-09-27", time: "19:00", instructor: "Sara", location: "Core Gym Malmö" },
-    { id: 4, title: "Gym Intro", date: "2025-09-28", time: "16:00", instructor: "Nils", location: "Core Gym Uppsala" },
-];
+import { useAuth } from '../components/AuthContext';
 
 function HistoryWorkout() {
+    const { user } = useAuth();
+    const [workouts, setWorkouts] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchWorkouts = async () => {
+            try {
+                if (!user?.id) {
+                    console.log("Ingen user.id");
+                    setLoading(false);
+                    return;
+                }
+
+                const bookingsRes = await fetch(`https://localhost:7106/api/bookings/member/${user.id}`);
+                if (!bookingsRes.ok) throw new Error("Kunde inte hämta bokningar");
+                const bookings = await bookingsRes.json();
+
+                const workoutsRes = await fetch(`https://localhost:7214/api/workouts`);
+                if (!workoutsRes.ok) throw new Error("Kunde inte hämta workouts");
+                const allWorkouts = await workoutsRes.json();
+
+                const fullData = bookings.map(b => ({
+                    ...b,
+                    workout: allWorkouts.find(w => w.id === b.workoutId)
+                }));
+
+                setWorkouts(fullData);
+
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchWorkouts();
+    }, [user]);
+
+    if (loading) return <p>Laddar träningshistorik...</p>;
+
     return (
         <div className='workout-history'>
             <h3>Din träningshistorik</h3>
@@ -16,19 +50,18 @@ function HistoryWorkout() {
                 {workouts.length === 0 ? (
                     <p>Ingen träningshistorik</p>
                 ) : (
-                    workouts.map((workout) => (
-                        <div className="workout-history-card" key={workout.id}>
-                            <h5>{workout.title}</h5>
-                            <p>Instruktör: {workout.instructor}</p>
-                            <p>Datum: {workout.date} - {workout.time}</p>
-                            <p>Plats: {workout.location}</p>
+                    workouts.map((booking) => (
+                        <div className="workout-history-card" key={booking.id}>
+                            <h5>{booking.workout?.title || "Okänt pass"}</h5>
+                            <p>Instruktör: {booking.workout?.instructor || "Okänd"}</p>
+                            <p>Datum: {booking.workout ? new Date(booking.workout.date).toLocaleDateString() : "-"}</p>
+                            <p>Plats: {booking.workout?.location || "-"}</p>
                         </div>
                     ))
                 )}
             </div>
-
         </div>
-    )
+    );
 }
 
 export default HistoryWorkout;
