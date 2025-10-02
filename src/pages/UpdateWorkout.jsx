@@ -6,6 +6,7 @@ import { updateWorkout, deleteWorkout, getWorkoutById  } from '../services/sched
 const UpdateWorkout = () => {
   const { id } = useParams()
   const navigate = useNavigate()
+  const [loading, setLoading] = React.useState(true);
 
   const [formData, setFormData] = React.useState({
   title: '',
@@ -34,6 +35,9 @@ const UpdateWorkout = () => {
       } catch (error) {
         alert('Kunde inte ladda passet: ' + error.message);
       }
+      finally {
+        setLoading(false);
+      }
     };
 
     fetchWorkout();
@@ -56,7 +60,11 @@ const UpdateWorkout = () => {
     e.preventDefault()
 
     try {
-      const updatedWorkout = { ...formData, Id: id };
+      const updatedWorkout = {
+        ...formData,
+        Id: id,
+        totalSpots: parseInt(formData.totalSpots, 10) || 0  // Ensure totalSpots is an integer
+      };
 
       await updateWorkout(id, updatedWorkout);
       alert('Passet har uppdaterats!');
@@ -65,6 +73,8 @@ const UpdateWorkout = () => {
       alert('Fel vid uppdatering: ' + error.message);
     }
   };
+
+  if (loading) return <p>Laddar...</p>;
 
   return (
     <div className="update-container">

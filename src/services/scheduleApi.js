@@ -21,7 +21,8 @@ export async function getWorkoutById(workoutId) {
     throw new Error(text || "Kunde inte hämta träningspasset");
   }
 
-  return response.json();
+  const json = await response.json();
+  return json.workout;
 }
 
 // POST: Create a new workout
