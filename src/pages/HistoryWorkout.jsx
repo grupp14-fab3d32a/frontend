@@ -41,7 +41,7 @@ function HistoryWorkout() {
         fetchWorkouts();
     }, [user]);
 
-    if (loading) return <p>Laddar träningshistorik...</p>;
+    if (loading) return <p>Laddar träningshistorik..</p>;
 
     return (
         <div className='workout-history'>
