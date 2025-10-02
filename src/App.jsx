@@ -1,7 +1,7 @@
 import Confirm from './components/Confirm'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
-import './css/App.css'
+import './css/app.css'
 import SignUpForm from './components/SignUpForm'
 import SignInForm from './components/SignInForm'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
