@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { signIn } from '../services/authService'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
+import { Link } from 'react-router-dom';
 
 function SignInForm() {
     const [formData, setFormData] = useState({ email: "", password: "" })
@@ -99,7 +100,7 @@ function SignInForm() {
                         <a href="" className='clr-text-white'>Glömt lösenord?</a>
                     </div>
                     <button type="submit" className='button button-secondary'>Logga in</button>
-                    <a href="/signup" className='clr-text-white'>Ny användare? Registrera dig här</a>
+                    <Link to="/signup" className='clr-text-white'>Ny användare? Registrera dig här</Link>
                 </form>
             </div>
         </div>
