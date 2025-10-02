@@ -3,7 +3,7 @@ const API_BASE_URL = import.meta.env.VITE_SCHEDULE_API_BASE_URL;
 
 // GET: All workouts
 export async function getAllWorkouts() {
-  const response = await fetch(`${API_BASE_URL}/workouts`);
+  const response = await fetch(`${API_BASE_URL}api/workouts`);
 
   if (!response.ok) {
     throw new Error("Något gick fel vid hämtning av träningspass.");
@@ -14,7 +14,7 @@ export async function getAllWorkouts() {
 
 // GET: Get a single workout by ID
 export async function getWorkoutById(workoutId) {
-  const response = await fetch(`${API_BASE_URL}/workouts/${workoutId}`);
+  const response = await fetch(`${API_BASE_URL}api/workouts/${workoutId}`);
 
   if (!response.ok) {
     const text = await response.text();
@@ -27,7 +27,7 @@ export async function getWorkoutById(workoutId) {
 
 // POST: Create a new workout
 export async function createWorkout(workout) {
-  const response = await fetchWithToken(`${API_BASE_URL}/workouts/create`, {
+  const response = await fetchWithToken(`${API_BASE_URL}api/workouts/create`, {
     method: 'POST',
     headers: {},
     body: JSON.stringify(workout),
@@ -47,7 +47,7 @@ export async function updateWorkout(workoutId, workout) {
 
   if (!workout.Id) workout.Id = workoutId;
 
-  const response = await fetchWithToken(`${API_BASE_URL}/workouts/${workoutId}`, {
+  const response = await fetchWithToken(`${API_BASE_URL}api/workouts/${workoutId}`, {
     method: 'PUT',
     headers: {},
     body: JSON.stringify(workout),
@@ -63,7 +63,7 @@ export async function updateWorkout(workoutId, workout) {
 
 // DELETE: Remove a workout by ID
 export async function deleteWorkout(workoutId) {
-  const response = await fetchWithToken(`${API_BASE_URL}/workouts/${workoutId}`, {
+  const response = await fetchWithToken(`${API_BASE_URL}api/workouts/${workoutId}`, {
     method: 'DELETE',
   });
   if (!response.ok) {
