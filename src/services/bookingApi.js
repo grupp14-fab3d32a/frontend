@@ -2,7 +2,7 @@ const API_BASE_URL = import.meta.env.VITE_BOOKING_API_BASE_URL;
 
 // GET: All bookings
 export async function getAllBookings(memberId) {
-  const response = await fetch(`${API_BASE_URL}/api/bookings/member/${memberId}`, {
+  const response = await fetch(`${API_BASE_URL}api/bookings/member/${memberId}`, {
     method: 'GET',
     headers: { "Content-Type": "application/json" }
   });
