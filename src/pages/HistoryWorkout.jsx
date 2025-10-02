@@ -6,6 +6,8 @@ function HistoryWorkout() {
     const { user } = useAuth();
     const [workouts, setWorkouts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const BOOKING_API = import.meta.env.VITE_BOOKING_API_BASE_URL;
+    const SCHEDULE_API = import.meta.env.VITE_SCHEDULE_API_BASE_URL;
 
     useEffect(() => {
         const fetchWorkouts = async () => {
@@ -16,11 +18,11 @@ function HistoryWorkout() {
                     return;
                 }
 
-                const bookingsRes = await fetch(`https://localhost:7106/api/bookings/member/${user.id}`);
+                const bookingsRes = await fetch(`${BOOKING_API}/bookings/member/${user.id}`);
                 if (!bookingsRes.ok) throw new Error("Kunde inte hämta bokningar");
                 const bookings = await bookingsRes.json();
 
-                const workoutsRes = await fetch(`https://localhost:7214/api/workouts`);
+                const workoutsRes = await fetch(`${SCHEDULE_API}/workouts`);
                 if (!workoutsRes.ok) throw new Error("Kunde inte hämta workouts");
                 const allWorkouts = await workoutsRes.json();
 
