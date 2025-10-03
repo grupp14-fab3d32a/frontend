@@ -70,14 +70,21 @@ const WorkoutList = () => {
 
     try {
       let res;
+      const token = localStorage.getItem("token");
       if (isBooked) {
         res = await fetch(`${API_BASE_URL}/api/bookings/${user.id}/${workout.id}`, {
           method: "DELETE",
+          headers: {
+            "Authorization: `Bearer ${token}`
+          },
         });
       } else {
         res = await fetch(`${API_BASE_URL}/api/bookings`, {
           method: "POST",
-          headers: { "Content-type": "application/json" },
+          headers: { 
+            "Content-type": "application/json",
+            "Authorization: `Bearer ${token}`
+          },
           body: JSON.stringify(requestData),
         });
       }
