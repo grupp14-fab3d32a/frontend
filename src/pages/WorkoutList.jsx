@@ -15,7 +15,7 @@ const WorkoutList = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // const API_BASE_URL = import.meta.env.VITE_BOOKING_API_BASE_URL;
+  const API_BASE_URL = import.meta.env.VITE_BOOKING_API_BASE_URL;
 //   const user = mockAuthUser ?? {
 //   id: "1234",
 //   email: "admin@test.com",
@@ -71,11 +71,11 @@ const WorkoutList = () => {
     try {
       let res;
       if (isBooked) {
-        res = await fetch(`${VITE_BOOKING_API_BASE_URL}/api/bookings/${user.id}/${workout.id}`, {
+        res = await fetch(`${API_BASE_URL}/api/bookings/${user.id}/${workout.id}`, {
           method: "DELETE",
         });
       } else {
-        res = await fetch(`${VITE_BOOKING_API_BASE_URL}/api/bookings`, {
+        res = await fetch(`${API_BASE_URL}/api/bookings`, {
           method: "POST",
           headers: { "Content-type": "application/json" },
           body: JSON.stringify(requestData),
