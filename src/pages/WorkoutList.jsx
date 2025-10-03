@@ -75,7 +75,7 @@ const WorkoutList = () => {
         res = await fetch(`${API_BASE_URL}/api/bookings/${user.id}/${workout.id}`, {
           method: "DELETE",
           headers: {
-            "Authorization: `Bearer ${token}`
+            "Authorization": `Bearer ${token}`
           },
         });
       } else {
@@ -83,7 +83,7 @@ const WorkoutList = () => {
           method: "POST",
           headers: { 
             "Content-type": "application/json",
-            "Authorization: `Bearer ${token}`
+            "Authorization": `Bearer ${token}`
           },
           body: JSON.stringify(requestData),
         });
