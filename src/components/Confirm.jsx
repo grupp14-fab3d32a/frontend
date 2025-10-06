@@ -16,10 +16,10 @@ const Confirm = () => {
         <p>Tack för din bokning. Här är dina uppgifter:</p>
 
         <div className="confirm-details">
-          <p><span>Pass:</span>{state.title}</p>
-          <p><span>Datum:</span>{state.date}</p>
-          <p><span>Tid:</span>{state.startTime}</p>
-          <p><span>Plats:</span>{state.location}</p>
+          <p><span>Pass:</span> {state.title}</p>
+          <p><span>Datum:</span> {state.date}</p>
+          <p><span>Tid:</span> {state.startTime}</p>
+          <p><span>Plats:</span> {state.location}</p>
         </div>
 
                 <button 
