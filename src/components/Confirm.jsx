@@ -17,8 +17,8 @@ const Confirm = () => {
 
         <div className="confirm-details">
           <p><span>Pass:</span>{state.title}</p>
-          <p><span>Datum:</span>{state.dateOnly}</p>
-          <p><span>Tid:</span>{state.timeOnly}</p>
+          <p><span>Datum:</span>{state.date}</p>
+          <p><span>Tid:</span>{state.startTime}</p>
           <p><span>Plats:</span>{state.location}</p>
         </div>
 
