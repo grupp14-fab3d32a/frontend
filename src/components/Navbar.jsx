@@ -85,7 +85,9 @@ const Navbar = () => {
                 {showUserDropdown && (
                   <ul className="dropdown-menu user-dropdown">
                     <li><Link to="/profile">Profil</Link></li>
+                    {user?.roles?.includes("Member") && (
                     <li><Link to="/workouthistory">Träningshistorik</Link></li>
+                    )}
                     <li><button onClick={handleLogout}>Logga ut</button></li>
                   </ul>
                 )}
