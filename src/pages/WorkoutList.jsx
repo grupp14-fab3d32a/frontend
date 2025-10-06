@@ -141,7 +141,7 @@ const WorkoutList = () => {
                   Uppdatera
                 </button>
               )}
-              {user?.roles?.includes("User") && (
+              {user?.roles?.includes("Member") && (
               <button
                 className="button button-secondary"
                 onClick={() => handleBooking(workout)}
