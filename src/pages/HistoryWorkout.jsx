@@ -18,11 +18,11 @@ function HistoryWorkout() {
                     return;
                 }
 
-                const bookingsRes = await fetch(`${BOOKING_API}/bookings/member/${user.id}`);
+                const bookingsRes = await fetch(`${BOOKING_API}/api/bookings/member/${user.id}`);
                 if (!bookingsRes.ok) throw new Error("Kunde inte hämta bokningar");
                 const bookings = await bookingsRes.json();
 
-                const workoutsRes = await fetch(`${SCHEDULE_API}/workouts`);
+                const workoutsRes = await fetch(`${SCHEDULE_API}/api/workouts`);
                 if (!workoutsRes.ok) throw new Error("Kunde inte hämta workouts");
                 const allWorkouts = await workoutsRes.json();
 
