@@ -48,6 +48,7 @@
 .update-buttons {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 1rem;
 }
 
@@ -55,7 +56,7 @@
   background: var(--clr-secondary);
   color: var(--clr-text-black);
   border: none;
-  padding: 0.7rem 1.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: 0.3s;
@@ -69,7 +70,7 @@
   background: var(--clr-button-gray);
   color: var(--clr-text-black);
   border: none;
-  padding: 0.7rem 1.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: 0.3s;
@@ -79,7 +80,7 @@
   background: #e74c3c;
   color: var(--clr-text-white);
   border: none;
-  padding: 0.7rem 1.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: 0.3s;
