@@ -52,7 +52,7 @@
   margin-top: 1rem;
 }
 
-.save-btn {
+.update-buttons .save-btn {
   background: var(--clr-secondary);
   color: var(--clr-text-black);
   border: none;
