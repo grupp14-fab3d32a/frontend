@@ -60,6 +60,8 @@
   border-radius: 0.5rem;
   cursor: pointer;
   transition: 0.3s;
+  font-size: 1rem;
+  margiin-top: 0;
 }
 
 .save-btn:hover {
@@ -74,6 +76,7 @@
   border-radius: 0.5rem;
   cursor: pointer;
   transition: 0.3s;
+  font-size: 1rem;
 }
 
 .delete-btn {
@@ -84,6 +87,7 @@
   border-radius: 0.5rem;
   cursor: pointer;
   transition: 0.3s;
+  font-size: 1rem;
 }
 
 .cancel-btn:hover {
